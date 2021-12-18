@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Abel', sans-serif;
+}
+
+.banner{
+    width: 100%;
+    height: 100vh;
+    background: url(images/background.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+    opacity: 0.70;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.banner-text {
+    background: black;
+    font-size: 2.25rem;
+    padding: 0.5em;
+    letter-spacing: 0.2em;
+}
+
+.info {
+    width: 100%;
+    height: 45vh;
+    background: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.info-heading {
+    font-size: 2rem;
+    margin: 0.75em 0;
+}
+
+.info-text {
+    width: 80%;
+    font-size: 1.2rem;
+    margin: 0.5em;
+}
+
+.img-container {
+    width: 100%;
+    height: 55vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.75rem;
+    letter-spacing: 0.2em;
+    color: #fff;
+}
+
+.lights-bg {
+    background: url(images/lights.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.skyscraper-bg {
+    background: url(images/skyscrapers.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+@media screen and (max-width: 880px){
+    .info {
+        height: auto;
+    }
+}
