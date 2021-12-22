@@ -1,0 +1,19 @@
+.box {
+    background:rgb(168, 168, 255);
+    padding: 1em;
+    border: rgb(99, 99, 255) solid 3px;
+    color: white;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 0.75em;
+    row-gap: 0.75em;
+    /*mininum height is 100px but if more spce is required auto*/
+    grid-auto-rows: minmax(100px, auto);
+
+    /*grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    creating as many columns as required that the space can oocupy
+    */
+}
