@@ -4,6 +4,9 @@ const historyDisplayElement = document.querySelector("#history");
 const currrentDisplayElement = document.querySelector("#current");
 const answerDisplayElement = document.querySelector("#answer");
 
+let operatorArr = ["+", "-", "X", "/"];
+let numbersArr = ["1", "2", "3", "4", "5", "6" , "7" ,"8" ,"9", "0"];
+
 function addDigitToCurrent(digit, currentDisplay){
     let currentDisplayCurrentText = currentDisplay.innerText;
 
@@ -50,20 +53,89 @@ function addOperatorToHistory(operator, historyDisplay, currentDisplay){
 
     if(!operatorArr.includes(lastElementInDisplayText)){
             historyDisplay.innerText = historyDisplayText + operator;
+    }else if(operatorArr.includes(lastElementInDisplayText) && currentDisplay.innerText === "0"){
+        historyDisplay.innerText = historyDisplayText.substring(0, historyDisplayText.length-1) + operator; 
     }else{
         let operatorInHistory = historyDisplayText[historyDisplayText.length-1];
         let num1 = historyDisplayText.substring(0, historyDisplayText.indexOf(operatorInHistory));
         let num2 = currentDisplay.innerText;
 
-        let result = performCalculation(num1, num2, operator);
+        let result = performCalculation(num1, num2, operatorInHistory);
 
         historyDisplay.innerText = result + "" + operator;
         currentDisplay.innerText = 0;
     }
 }
 
-let operatorArr = ["+", "-", "X", "/", "%"];
-let numbersArr = ["1", "2", "3", "4", "5", "6" , "7" ,"8" ,"9"]
+function deleteEntry(currentDisplay){
+    let currentDisplayText = currentDisplay.innerText;
+
+    if(currentDisplayText.length !== 0 || currentDisplayText !== "0"){
+        currentDisplayText = currentDisplayText.substring(0, currentDisplayText.length -1)
+        currentDisplay.innerText = currentDisplayText;
+
+        currentDisplayText = currentDisplay.innerText;
+
+        if(currentDisplayText.length === 0){
+            currentDisplay.innerText = "0";
+        }
+    }
+}
+
+function deleteaLL(currentDisplay, historyDisplay){
+    currentDisplay.innerText = "0";
+    historyDisplay.innerText = "0";
+}
+
+function equate(currentDisplay, historyDisplay){
+    let historyDisplayText = historyDisplay.innerText;
+    let currentDisplayText = currentDisplay.innerText;
+
+    let operatorInHistory = historyDisplayText.substring(historyDisplayText.length-1);
+
+    if(operatorArr.includes(operatorInHistory)){
+        let num1 = Number(historyDisplayText.substring(0, historyDisplayText.indexOf(operatorInHistory)));
+        let num2 = Number(currentDisplay.innerText);
+
+        let result = performCalculation(num1, num2, operatorInHistory);
+
+        historyDisplay.innerText = result;
+        currentDisplay.innerText = "0";
+    }
+}
+
+function addDecimal(currentDisplay){
+    let currentDisplayText = currentDisplay.innerText;
+
+    if(currentDisplayText.indexOf(".") === -1){
+        currentDisplay.innerText = currentDisplayText + ".";
+    }
+}
+
+function percent(currentDisplay, historyDisplay){
+    let historyDisplayText = historyDisplay.innerText;
+    let operatorInHistory = historyDisplayText.substring(historyDisplayText.length-1);
+
+    let currentDisplayText = currentDisplay.innerText;
+
+    if(operatorArr.includes(operatorInHistory)){
+        if(currentDisplayText.length > 2) {
+            let length = currentDisplayText.length;
+
+            let newDisplayText = currentDisplayText.substring(0, length -2) + "." + currentDisplayText.substring(length -2);
+            
+            currentDisplay.innerText = newDisplayText;
+        }   else {
+            if(currentDisplayText.length === 1){
+                currentDisplay.innerText = `0.0${currentDisplayText}`;
+            }else {
+                currentDisplay.innerText = `0.0${currentDisplayText}`;
+            }
+        }     
+    }else {
+        currentDisplay.innerText = "0";
+    }
+}
 
  function addEventListenersToBtns(allBtnsElement){
     allBtnsElement.querySelectorAll(".btn")
@@ -80,6 +152,26 @@ let numbersArr = ["1", "2", "3", "4", "5", "6" , "7" ,"8" ,"9"]
             if(operatorArr.includes(clickElement)){
                 addCurretTextToHistory(currrentDisplayElement, historyDisplayElement);
                 addOperatorToHistory(clickElement, historyDisplayElement, currrentDisplayElement);
+            }
+
+            if(clickElement === "CE"){
+                deleteEntry(currrentDisplayElement);
+            }
+
+            if(clickElement === "C"){
+                deleteaLL(currrentDisplayElement, historyDisplayElement);
+            }
+
+            if(clickElement === "="){
+                equate(currrentDisplayElement, historyDisplayElement);
+            }
+
+            if(clickElement === "."){
+                addDecimal(currrentDisplayElement);
+            }
+
+            if(clickElement === "%"){
+                percent(currrentDisplayElement, historyDisplayElement);
             }
         });
 

@@ -49,9 +49,15 @@ body {
 }
 
 #current {
-    font-size: 1.75rem;
+    font-size: 2.5rem;
     font-weight: bold;
 }
+
+
+#history{
+    font-size: 1.75rem;
+}
+
 
 #caculator-btns {
     height: 80%;
