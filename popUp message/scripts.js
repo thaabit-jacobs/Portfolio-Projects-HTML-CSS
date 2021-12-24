@@ -1,55 +1,41 @@
 const clickableBoxes = document.querySelectorAll(".popup");
-const msgContainer = document.querySelector("#msg-container");
+const msgContainer = document.querySelector(".msg-container");
+const closeBtn = document.querySelector(".close");
 
-function createCloseBtn(msgContainer){
-    const closeBtn = document.createElement("button");
-    closeBtn.id = "close";
-    closeBtn.innerText = "close"; 
-
-    closeBtn.addEventListener("click", (event) => {
-            closeBtn.remove();
-            closeBtn.remove();
-    });
-
-    return closeBtn;
-} 
-
-function createMsgP() {
-    const msg = document.createElement("p");
-    msg.id = "msg";
-
-    return msg;
+function isMsgContainerHidden(msgContainerElement){
+    return msgContainerElement.classList.value.includes("hidden");
 }
 
-
-function creatdMsgContainer(){
-    const btnContainer = document.createElement("div");
-    btnContainer.className = "btn-container";
-
-    btnContainer.appendChild(createCloseBtn(msgContainer));
-    msgContainer.appendChild(createMsgP());
-    msgContainer.appendChild(btnContainer);
-
-    return msgContainer;
+function unhideMsgContainerAndCloseBtn(msgContainerElement, closeBtnElement){
+    msgContainerElement.className = "msg-container";
+    closeBtnElement.className = "close";
+    return true;
 }
 
-function isMsgBoxChildrenCreated(){
-    if(msgContainer.childNodes.length !== 0) return true;
-
-    return false;
+function hideMsgContainerAndCloseBtn(msgContainerElement, closeBtnElement){
+    msgContainerElement.className = "msg-container hidden";
+    closeBtnElement.className = "close hidden";
+    return true;
 }
+
+function updateMsgContainerMsg(updatedMsg){
+    const msgElement = document.querySelector("#msg");
+    msgElement.innerText = updatedMsg;
+}
+
+closeBtn.addEventListener("click", (event) => {
+    hideMsgContainerAndCloseBtn(msgContainer, closeBtn);
+})
 
 clickableBoxes.forEach(clickable => {
     clickable.addEventListener("click", (event) => {
         let clickableBoxMsg = event.target["attributes"]["data-msg"].textContent;
-        const msg = document.querySelector("#msg");
         
-        if(isMsgBoxChildrenCreated()){
-            msg.innerText = clickableBoxMsg;
+        if(isMsgContainerHidden(msgContainer)){
+            unhideMsgContainerAndCloseBtn(msgContainer, closeBtn);
+            updateMsgContainerMsg(clickableBoxMsg);
+        }else{
+            updateMsgContainerMsg(clickableBoxMsg);
         }
-
-        creatdMsgContainer();
-
-        msg.innerText = clickableBoxMsg;
     })
 })
