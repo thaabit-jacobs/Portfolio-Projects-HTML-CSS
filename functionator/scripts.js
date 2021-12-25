@@ -83,7 +83,7 @@ function removeLastInstruction(){
             shiftMoveableUp();
         }
 
-        setTimeout(removeLastInstruction, 1000); 
+        setTimeout(removeLastInstruction, 500); 
     }
 }
 
