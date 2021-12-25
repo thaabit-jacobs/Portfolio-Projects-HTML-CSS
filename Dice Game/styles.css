@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
+
+body{
+    display: flex;
+    justify-content: center;
+    font-family: 'Unica One', cursive;
+}
+
+#game-board {
+    width: 70vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5em;
+}
+
+#windows {
+    width: 80%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    column-gap: 2em;
+}
+
+.player-window{
+    border: 2px solid black;
+    width: 40%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid rgba(194, 193, 193, 0.192);
+    border-radius: 7px;
+}
+
+.die{
+    width: 30%;
+    height: 65%;
+    object-fit: cover;
+    object-position: center;
+    margin-bottom: 2em;
+}
+
+#roll {
+    margin-top: 1.5em;
+    font-size: 1.25rem;
+    padding: 0.25em 1.5em;
+    border-radius: 5px;
+    border: 2px solid rgba(194, 193, 193, 0.192);
+    background: #fff;
+    font-family: 'Unica One', cursive;
+}
+
+#roll:hover {
+    border: 2px solid rgba(70, 68, 68, 0.192);
+    background: rgba(39, 35, 35, 0.192);
+    color: #fff;
+}
+
+#roll:active {
+    border: 2px solid rgba(70, 68, 68, 0.192);
+    background: rgba(39, 35, 35, 0.192);
+    color: #fff;
+    box-shadow:2px 2px 8px 2.5px rgba(19, 10, 10, 0.192);
+}
