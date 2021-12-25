@@ -1,4 +1,5 @@
 const moveableArea = document.querySelector("#moveable-area");
+const movableObject =document.querySelector("#movable-object");
 const instructionsContainer = document.querySelector("#instructions-container");
 const directionalKeys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
 let instructionsQeue = [];
@@ -32,11 +33,56 @@ function addClickEventToInstruction(instructionElement){
     return true;
 }
 
+function shiftMoveableUp(){
+    let rect = movableObject.getBoundingClientRect();
+    movableObject.style.top = rect.top - rect.height + "px"; 
+}
+
+function shiftMoveableDown(){
+    let rect = movableObject.getBoundingClientRect();
+    movableObject.style.top = rect.top + rect.height + "px"; 
+}
+
+function shiftMoveableLeft(){
+    let rect = movableObject.getBoundingClientRect();
+    movableObject.style.left = rect.left - rect.width + "px"; 
+}
+
+function shiftMoveableRight(){
+    let rect = movableObject.getBoundingClientRect();
+    movableObject.style.left = rect.left + rect.width + "px"; 
+}
+
 function removeLastInstruction(){
     let lastElement = instructionsContainer.lastChild; 
     
     if(lastElement !== null){
+        let instruction = lastElement.innerText.replace("+", "");
+        movableObject.innerText = `Move: ${instruction}` 
         lastElement.remove();
+  
+        instruction = instruction.trim()
+
+        if(instruction === 'Left'){
+            console.log("in left")
+            shiftMoveableLeft();
+        }
+
+        if(instruction === 'Right'){
+            console.log("in right")
+            shiftMoveableRight();
+        }
+
+        if(instruction === 'Down'){
+            console.log("in down")
+            shiftMoveableDown();
+        }
+
+        if(instruction === 'Up'){
+            console.log("in up")
+            shiftMoveableUp();
+        }
+
         setTimeout(removeLastInstruction, 1000); 
     }
 }
@@ -56,6 +102,5 @@ window.addEventListener("keydown", (event) => {
     if(selectedKey === "Enter"){
         removeLastInstruction(instructionsContainer);
     }
-
 
 })
