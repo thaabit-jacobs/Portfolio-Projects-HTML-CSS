@@ -46,28 +46,33 @@ body{
 .car {
     width: 15%;
     height: 100px;
+    position: absolute;
+    z-index: 1;
 }
 
 
+.hide-black{
+    color: #000;
+}
+
 #player-car{
-    position: absolute;
     background: #fff;
     top: 250px;
     left: 165px;
 }
 
-.npc-car {
+.enemy{
 
 }
 
-.npc-car-red {
+.red {
     background: red;
 }
 
-.npc-car-green {
+.green {
     background: green;
 }
 
-.npc-car-blue {
+.blue {
     background: blue;
 }

@@ -4,7 +4,11 @@
 const road = document.querySelector("#road");
 const playerCar = document.querySelector("#player-car");
 const score = document.querySelector("#score");
+const gameOver = document.querySelector("#game-over");
+
 let currentScore = 0;
+let roadLineInterval;
+let enemyCarInterval;
 
 function updateScore(currentScore) {
     score.innerText = `Score: ${currentScore}`;
@@ -47,7 +51,26 @@ function roadLineAnimation() {
         }
     })
 
-    updateScore(++currentScore);
+}
+
+function collisionDetection(){
+    let payerCurrentPosition = playerCar.getBoundingClientRect();
+    let enemyCars = document.querySelectorAll(".enemy");
+
+    enemyCars.forEach(enemyCar => {
+        let enemyCarCurretnPosition = enemyCar.getBoundingClientRect();
+
+        if(!((playerCar.getBoundingClientRect().bottom < enemyCarCurretnPosition.top) || (playerCar.getBoundingClientRect().top > enemyCarCurretnPosition.bottom)
+        || (playerCar.getBoundingClientRect().right < enemyCarCurretnPosition.left) || (playerCar.getBoundingClientRect().left > enemyCarCurretnPosition.right))){
+
+            console.log("HIT!!!");
+            clearInterval(roadLineInterval);
+            clearInterval(enemyCarInterval);
+
+            gameOver.className = "";
+            gameOver.innerText = "Game Over"
+        }
+    })
 }
 
 function movePlayerCar(direction) {
@@ -80,18 +103,60 @@ function movePlayerCar(direction) {
 
     //329
     if (direction === "Right") {
-        if(convertToNumber(playerCar.style.left) !== 330) {
+        if(convertToNumber(playerCar.style.left) !== 400) {
             playerCar.style.left = convertToNumber(playerCar.style.left) + movementSpeed + "px";
         }
     }
+
+    collisionDetection();
 }
 
-//moveRoadLineTester();
-setInterval(roadLineAnimation, 1);
+function createEnemyCar(){
+    let enemyColors = ["red", "blue", "green"];
+    let randomEnemyColor = enemyColors[Math.floor(Math.random() * (3 - 0) + 0)];
+    let appearanceLocation = [["10px", "10px"], ["25px", "190px"], ["35px", "280px"]]
+    let locations = appearanceLocation[Math.floor(Math.random() * (3 - 0) + 0)];
 
+    let enemyCarDiv = document.createElement("div");
+    enemyCarDiv.className = `car ${randomEnemyColor} enemy`;
+
+    enemyCarDiv.style.top =  locations[0];
+    enemyCarDiv.style.left =  locations[1];
+
+    return road.appendChild(enemyCarDiv);
+}
+
+function moveEenemyCar(enemyCar) {
+    enemyCar.style.top = Number(enemyCar.style.top.replace("px", "")) + 1 + "px";
+    return enemyCar;
+}
+
+function enemyCarAnimation() {
+    const enemyCars = document.querySelectorAll(".enemy");
+
+    enemyCars.forEach(enemy => {
+        moveEenemyCar(enemy);
+
+        if (enemy.style.top === "200px") {
+            createEnemyCar();
+        }
+
+        if (enemy.style.top === "500px") {
+            enemy.remove();
+        }
+    })
+
+    updateScore(++currentScore);
+}
 
 window.addEventListener("keydown", (event) => {
     let selectedKey = event.key;
+
+
+    if(selectedKey === "Enter"){
+        roadLineInterval = setInterval(roadLineAnimation, 1);
+        enemyCarInterval =  setInterval(enemyCarAnimation, 10);
+    }
 
     movePlayerCar(selectedKey)
 })
