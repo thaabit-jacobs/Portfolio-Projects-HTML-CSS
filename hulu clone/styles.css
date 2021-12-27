@@ -258,4 +258,71 @@ column-gap: 2em;
     height: 50px;
     border-radius: 50%;
     background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-img {
+    width: 90%;
+    height: auto;
+}
+
+
+#plan-selection{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 1.75em;
+}
+
+#plan-selection-table-heading-logo{
+    width: 50%;
+    height: auto;
+    text-align: left;
+}
+
+#plan-selection-heading {
+    color: #000;
+}
+
+#plan-selection-text{
+    color: #000;
+}
+
+.bold{
+    color: #000;
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+
+#plan-selection-table{
+    width: 80%;
+}
+
+#plan-selection-table-heading{
+font-size: 1.75rem;
+}
+
+#plan-selection-table-text{
+    font-size: 0.85rem;
+    font-weight: normal;
+}
+
+.left-align{
+    text-align: left;
+}
+
+.center-align{
+    text-align: center;
+}
+
+.table-head-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    row-gap: 0.5m;
 }
