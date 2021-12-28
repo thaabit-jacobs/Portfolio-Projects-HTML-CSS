@@ -1,0 +1,16 @@
+{
+    "thaabit": {    "name": "thaabit",
+                    "age": 23
+                },
+
+    "kauthar": {
+        "name": "kauthar",
+        "age": 22
+    },
+
+    "peter" :   {
+        "name": "Peter",
+        "age": 34
+    }         
+
+}

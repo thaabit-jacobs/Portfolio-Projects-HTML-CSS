@@ -10,6 +10,8 @@ let currentScore = 0;
 let roadLineInterval;
 let enemyCarInterval;
 
+let isNewGame = false;
+
 function updateScore(currentScore) {
     score.innerText = `Score: ${currentScore}`;
     return score;
@@ -63,14 +65,45 @@ function collisionDetection(){
         if(!((playerCar.getBoundingClientRect().bottom < enemyCarCurretnPosition.top) || (playerCar.getBoundingClientRect().top > enemyCarCurretnPosition.bottom)
         || (playerCar.getBoundingClientRect().right < enemyCarCurretnPosition.left) || (playerCar.getBoundingClientRect().left > enemyCarCurretnPosition.right))){
 
-            console.log("HIT!!!");
-            clearInterval(roadLineInterval);
-            clearInterval(enemyCarInterval);
-
             gameOver.className = "";
             gameOver.innerText = "Game Over"
+
+            resetGame()
         }
     })
+}
+
+
+function clearAllEnemyCars(){
+    const allEnemyCars = document.querySelectorAll(".enemy");
+    allEnemyCars.forEach(enemy => enemy.remove());
+}
+
+function clearAllRoadLines(){
+    const allRoadLines = document.querySelectorAll(".road-line");
+    allRoadLines.forEach(line => line.remove())
+}
+
+function displayMenue(){
+    let menue = document.createElement("div");
+    menue.innerHTML = `<p class="delete"> ${score.innerText}</p> <p class="delete">Press Enter to restart</p>`
+
+    let scoreBoard =  document.querySelector("#scoreboard");
+
+    scoreBoard.querySelectorAll("p").forEach(childNode => childNode.remove());
+
+    scoreBoard.appendChild(menue);
+
+    isNewGame = true;
+}
+
+function resetGame(){
+    clearInterval(roadLineInterval)
+    clearInterval(enemyCarInterval)
+    clearAllEnemyCars();
+    clearAllRoadLines();
+    displayMenue();
+    console.log("game over")
 }
 
 function movePlayerCar(direction) {
@@ -154,8 +187,30 @@ window.addEventListener("keydown", (event) => {
 
 
     if(selectedKey === "Enter"){
-        roadLineInterval = setInterval(roadLineAnimation, 1);
-        enemyCarInterval =  setInterval(enemyCarAnimation, 10);
+        let sb = document.querySelector("#scoreboard");
+
+        sb.childNodes.forEach(c => c.remove());
+
+        if(isNewGame){
+            createEnemyCar();
+            addNewRoadLineToRoad(createRoadLine());
+
+            let p1 = document.createElement("p");
+            p1.setAttribute("id", "score");
+            p1.innerText = "Score: 0";
+
+            let p2 = document.createElement("p");
+            p2.setAttribute("id", "game-over");
+            p2.className = "hide-black";
+
+            p2.innerText = "hello";
+            
+            sb.appendChild(p1)
+            sb.appendChild(p2)
+            
+        }
+            roadLineInterval = setInterval(roadLineAnimation, 1);
+            enemyCarInterval =  setInterval(enemyCarAnimation, 5);
     }
 
     movePlayerCar(selectedKey)
