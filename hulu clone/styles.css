@@ -309,7 +309,7 @@ column-gap: 2em;
     font-size: 1.75rem;
 }
 
-#plan-selection-table{
+.plan-selection-table{
     width: 80%;
 }
 
@@ -319,6 +319,15 @@ font-size: 1.75rem;
 
 #plan-selection-table-text{
     font-size: 0.85rem;
+    font-weight: normal;
+}
+
+.below-table-heading{
+    font-size: 1.75rem;
+}
+
+.below-table-text {
+    font-size: 1rem;
     font-weight: normal;
 }
 
@@ -398,3 +407,49 @@ font-size: 1.75rem;
 .highlighted-column{
     background: var(--hulu-table-bg-color);
 }
+
+.table-small-text{
+    color: #000;
+}
+
+.below-table-text{
+    width: 78%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.table-top-text{
+margin-bottom: 2em;
+}
+
+.table-bottom-text{
+margin-top: 2em;
+}
+
+.below-table-heading {
+    margin-bottom: 1rem;
+}
+
+.borderless td{
+    border: none;
+    padding: 0;
+}
+
+.borderless .table-small-text{
+    margin: 1em 0;
+    padding: 0 1.5rem;
+
+}
+
+.borderless h3{
+ font-size: 1.9rem;
+ margin: 1.2em 0 0.75em;   
+ padding: 0 1.5rem;
+}
+
+.borderless p{
+    padding: 0 1.5rem;
+}
+
+
