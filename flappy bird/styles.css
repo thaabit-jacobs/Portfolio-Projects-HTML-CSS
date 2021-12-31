@@ -1,8 +1,35 @@
 
+body{
+    width: 100vw;
+    height: 95vh;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
-#some-element-you-want-to-animate{
-    height: 100px;
-    width: 100px;
-    background: red;
+#game-area{
+    height: 85%;
+    width: 99%;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.pipe{
+    width: 70px;
+    background: green;   
+}
+
+.top-pipe{
+    height: 275px;
     position: absolute;
+}
+
+.bottom-pipe{
+    height: 275px;
+    position: absolute;
+    bottom: 0;
 }
