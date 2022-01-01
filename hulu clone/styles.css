@@ -223,6 +223,7 @@ a:hover {
 }
 
 #channels-contents{
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -301,6 +302,7 @@ column-gap: 2em;
 
 #plan-selection-text{
     color: #000;
+    text-align: center;
 }
 
 .bold{
@@ -359,6 +361,10 @@ font-size: 1.75rem;
     padding: 1.2em;
     border-radius: 5px;
     width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
 }
 
 .table-button:hover{
@@ -452,4 +458,122 @@ margin-top: 2em;
     padding: 0 1.5rem;
 }
 
+#footer {
+    width: 100%;
+    min-height: 60vh;
+    background: var(--hulu-footer-bg-gray);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+.layer-1 {
+    display: flex;
+    column-gap: 5em;
+    padding-bottom: 2em;
+    border-bottom: #cececf solid 1px;
+    margin: 1em;
+}
+
+.layer-2{
+    margin: 1em;
+    margin-top: 2em;
+    color: #656B7B;
+}
+.footer-col{
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-heading{
+    font-size: 0.75rem;
+}
+
+.footer-link {
+    color: #656B7B;
+    font-size: 0.95rem;
+}
+
+.social-icon{
+    width: 1.5%;
+    height: auto;
+}
+
+.socials-icon-group{
+    display: flex;
+    justify-content: center;
+    margin-left: 11em;
+    column-gap: 1em;
+}
+
+.misc-links{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1em;
+    margin-top: 2em;
+}
+
+@media screen  and (max-width: 1024px) {
+    #channels-contents{
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        position: static;
+    }
+
+    .plan-selection-table{
+        width: 100%;
+    }
+    #trial-section{
+        display: none;
+    }
+}
+
+@media screen  and (max-width: 840px) {
+    #tv-shows{
+        height: auto;
+    }
+
+    #tv-shows-container{
+        width: 100%;
+        height: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        justify-content: center;
+        row-gap: 1.5em;
+    }
+
+    .tv-show {
+        width: 35vw;
+        height: 75vh;
+    }
+
+    .table-img{
+        
+    }
+
+    .social-icon{
+        width: 5%;
+    }
+
+    .layer-1{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .misc-links{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .info-heading{
+        font-size: 1.75rem;
+    }
+}
