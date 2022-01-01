@@ -1,15 +1,16 @@
 let topPipe = document.querySelector(".top-pipe");
 let bottomPipe = document.querySelector(".bottom-pipe");
 let gameArea = document.querySelector("#game-area");
+let player = document.querySelector("#player");
+let isRunning = true;
 
-let xPos = 0;
 let intervalForPipeCreation = 0;
 
 function createPipesLength(){
     let possibleLengths = [
-        ["440px", "100px"], ["100px", "440px"], ["275px", "275px"],
-        ["200px", "350px"], ["350px", "200px"], ["175px", "375px"], 
-        ["375px", "175px"]
+        ["420px", "80px"], ["80px", "420px"], ["255px", "255px"],
+        ["180px", "330px"], ["330px", "180px"], ["155px", "355px"], 
+        ["355px", "155px"]
     ];
 
     function randomLength(){
@@ -24,9 +25,14 @@ function createPipesLength(){
     return possibleLengths[randomLength()];
 }
 
-//setting initial left properties but wait lets do it programmtically
+//setting initial left properties but wait lets do it programmtically (maybe)
 topPipe.style.left = "1432px";
 bottomPipe.style.left = "1432px";
+
+
+//setting player initial left properties
+player.style.bottom = "320px";
+player.style.left = "100px";
 
 function createPipes(){
     let lengths = createPipesLength();
@@ -48,11 +54,53 @@ function createPipes(){
     gameArea.appendChild(bottomPipe);
 }
 
+//get back to this later
+function collisionDetection(){
+    let payerCurrentPosition = player.getBoundingClientRect();
+    let pipes = document.querySelectorAll(".pipe");
+
+    pipes.forEach(pipe => {
+        let pipeCarCurretnPosition = pipe.getBoundingClientRect();
+
+        if(!((payerCurrentPosition.bottom < pipeCarCurretnPosition.top) || (payerCurrentPosition.top > pipeCarCurretnPosition.bottom)
+        || (payerCurrentPosition.right < pipeCarCurretnPosition.left) || (payerCurrentPosition.left > pipeCarCurretnPosition.right)) || 
+            Number(player.style.bottom.replace("px", "")) <= 0){
+
+            isRunning = false;
+        }
+    })
+}
+
+function movePlayer(){
+    player.style.bottom = Number(player.style.bottom.replace("px", "")) + 20 + "px";
+}
+
+function playerFall(){
+    player.style.bottom = Number(player.style.bottom.replace("px", "")) - 1 + "px";
+}
+
+let keyDownLstener = function(event){
+    let selectedKey = event.key.replace("Arrow", "");
+
+    if(selectedKey === "Up"){
+        movePlayer()
+    }
+
+    if(selectedKey === "Enter"){
+        window.location.reload(true);
+    }
+}
+
 
 function animatePipes(timestamp){
-    xPos += 1;
 
-    if(++intervalForPipeCreation % 200 === 0) createPipes();
+    playerFall()
+
+    window.addEventListener("keydown", keyDownLstener);
+
+    collisionDetection()
+
+    if(++intervalForPipeCreation % 300 === 0) createPipes();
 
     let allPipes = document.querySelectorAll(".pipe");
 
@@ -62,10 +110,8 @@ function animatePipes(timestamp){
         if(pipe.style.left === "2px") pipe.remove();
     })
 
-    //let gameAreaWindowLimit = gameArea.clientWidth - 90;
-    //console.log(gameAreaWindowLimit);
 
-    if(true){
+    if(isRunning){
         requestAnimationFrame(animatePipes);
     }
 }

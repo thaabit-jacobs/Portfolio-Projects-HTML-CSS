@@ -24,12 +24,21 @@ body{
 }
 
 .top-pipe{
-    height: 275px;
+    height: 255px;
     position: absolute;
 }
 
 .bottom-pipe{
-    height: 275px;
+    height: 255px;
     position: absolute;
     bottom: 0;
+}
+
+#player{
+    width: 15px;
+    height: 15px;
+    background: #000;
+    position: absolute;
+    z-index: 1;
+
 }
