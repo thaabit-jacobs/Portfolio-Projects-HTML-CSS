@@ -13,3 +13,6 @@ The Nasheehah we application is intended to provide muslims eith an application 
     - HTML & CSS
     - JS
     - Fetch API (JS)
+
+2. API
+   - https://aladhan.com/prayer-times-api
