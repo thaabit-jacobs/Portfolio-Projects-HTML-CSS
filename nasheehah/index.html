@@ -8,8 +8,90 @@
     <title>Nasheehah</title>
 </head>
 <body>
+    <header id="nav-bar">
+        <h1 id="logo">Nasheehah</h1>
+    </header>
 
+    <main id="main">
+        <div id="prays-table">
+            <div id="layer-1" class="mt-2">
+                <div id="layer-1-left-content">
+                    <h2 class="mb-1">Prayer Times in Midrand</h2>
+                    <p class="gray-text small-text">Midrand, Gauteng, South Africa</p>
+                </div>
 
+                <div class="layer-1-right-content">
+                    <p class="mb-1 bold small-text" id="hijiri-date">1 Jumada Al-Akirah, 1443</p>
+                    <p class="gray-text small-text" id="gregorian-date">4 January, 2022</p>
+                    <p></p>
+                </div>
+            </div>
+
+            <div id="layer-2">
+                <h2 class="mb-1 mt-1 medium-text">UPCOMING PRAY</h2>
+                <P class="mb-1 x-large-text" id="upcoming-pray"> ASR 00:00:00</P>
+            </div>
+
+            <div id="layer-3">
+                <div id="btn-group">
+                    <button class="bold mr-2 ml-2" id="today-prays">Today</button>
+                    <button class="blue-text mr-2 ml-2" id="this-weeks-prays">This week</button>
+                </div>
+
+                <div id="pray-group">
+                    <div class="pray left-align-text">
+                        <p id="fajr" class="pray-name blue-text">FAJR</p>
+                        <p class="pray-time">00:00</p>
+                    </div>
+
+                    <div class="pray left-align-text">
+                        <p id="sunrise" class="pray-name blue-text">SUNRISE</p>
+                        <p class="pray-time">00:00</p>
+                    </div>
+
+                    <div class="pray left-align-text">
+                        <p id="dhur" class="pray-name  blue-text">DHUHR</p>
+                        <p class="pray-time">00:00</p>
+                    </div>
+
+                    <div class="pray left-align-text">
+                        <p id="asr" class="pray-name  blue-text">ASR</p>
+                        <p class="pray-time">00:00</p>
+                    </div>
+
+                    <div class="pray left-align-text">
+                        <p id="magrib" class="pray-name  blue-text">MAGHRIB</p>
+                        <p class="pray-time">00:00</p>
+                    </div>
+
+                    <div class="pray left-align-text">
+                        <p id="isha" class="pray-name blue-text">ISHA</p>
+                        <p class="pray-time">00:00</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="layer-4">
+                <div class="misc">
+                    <h3 class="misc-heading small-text mb-1 gray-text">Calculation Method</h3>
+                    <p id="method" class="misc-text bold small-text mb-1">Muslim World League</p>    
+                    <p id="params" class="misc-text bold small-text">Fajr 18.0 degrees, Isha 17.0 degrees</p>    
+                </div>
+
+                <div class="misc">
+                    <h3 class="misc-heading small-text mb-1 gray-text">Juristic Method</h3>
+                    <p id="school" class="misc-text bold small-text">Hanbali, Maliki, Shafi</p> 
+                    <p class="misc-text hidden">Hidden</p>
+                </div>
+
+                <div class="misc">
+                    <h3 class="misc-heading small-text mb-1 gray-text">Latitude/Longitude</h3>
+                    <p id="co-ordinates" class="misc-text bold small-text">-25.9833, 28.1167</p>    
+                    <p class="misc-text hidden">Hidden</p>    
+                </div>
+            </div>
+        </div>
+    </main>
     <script src="scripts.js"></script>
 </body>
 </html>
