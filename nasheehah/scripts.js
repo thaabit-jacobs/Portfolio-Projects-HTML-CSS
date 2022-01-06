@@ -139,6 +139,30 @@ function extractDate(strDate){
     return new Date(year, --month, day);
 }
 
-getLocation();
+let minute = 1;
+let second = 10;
 
-renderPrayDataForToday();
+function nextPrayCountDownTimer(){
+
+    let int = setInterval(() => {
+        if(second-- === 0) {
+            if(minute !== 0){
+                minute--;
+                second = 10;
+            }
+        }
+
+        if(second === 0 && minute === 0){
+            console.log("Done!!"); 
+            clearInterval(int)
+        }else{
+            console.log(minute, ":", second);
+        }
+    }, 1000);
+}
+
+nextPrayCountDownTimer()
+
+//getLocation();
+
+//renderPrayDataForToday();
