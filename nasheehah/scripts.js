@@ -72,12 +72,12 @@ async function renderPrayDataForToday(){
 
 function nextPrayCountDownTimer(nextPrayTime){
     if(localStorage.nextPrayTime === undefined && localStorage.nextPrayName === undefined){
-        localStorage.nextPrayTime = nextPrayTime[1].substring(0, nextPrayTime[1].indexOf(" ")) + ":59"; 
+        localStorage.nextPrayTime = differenceInDates(nextPrayTime); 
         localStorage.nextPrayName = nextPrayTime[0];
     }
 
     if(localStorage.nextPrayTime === "00:00:00"){
-        localStorage.nextPrayTime = nextPrayTime[1].substring(0, nextPrayTime[1].indexOf(" ")) + ":59";
+        localStorage.nextPrayTime = differenceInDates(nextPrayTime)
         localStorage.nextPrayName = nextPrayTime[0];
     }
 
@@ -90,6 +90,22 @@ function nextPrayCountDownTimer(nextPrayTime){
         prayTimeEl.innerText = localStorage.nextPrayTime;
     }, 1000);
 
+}
+
+function differenceInDates(nextPrayTime){
+    let dt1 = new Date();
+
+    let dt2 = new Date();
+    dt2.setHours(Number(nextPrayTime[1].substring(0, nextPrayTime[1].indexOf(":"))))
+    dt2.setMinutes(Number(nextPrayTime[1].substring(nextPrayTime[1].indexOf(":") + 1, nextPrayTime[1].indexOf(" "))));
+    dt2.setSeconds(59);
+    
+    let min = 1000 * 60;
+    let diffTime =(dt2.getTime() - dt1.getTime()); 
+    
+    let minDifferenc = diffTime /min;
+    
+    return `${checkIfTimeLengthOfTwo(Math.floor(minDifferenc/60))}:${checkIfTimeLengthOfTwo(Math.floor(minDifferenc%60))}:${59}`;
 }
 
 function subTractTimerData(){
@@ -106,6 +122,7 @@ function subTractTimerData(){
     }else if(hours !== 0){
         hours--;
         mins = 59;
+        seconds = 59;
     }else {
         localStorage.nextPrayTime === "00:00:00";
     }
@@ -127,24 +144,6 @@ function checkIfTimeLengthOfTwo(value){
 
     return value;
 }
-
-/*
-    let int = setInterval(() => {
-        if(second-- === 0) {
-            if(minute !== 0){
-                minute--;
-                second = 10;
-            }
-        }
-
-        if(second === 0 && minute === 0){
-            console.log("Done!!"); 
-            clearInterval(int)
-        }else{
-            console.log(minute, ":", second);
-        }
-    }, 1000);
-*/
 
 function nextPray(timings){
     let currentDateHours = Number(new Date().getHours());
