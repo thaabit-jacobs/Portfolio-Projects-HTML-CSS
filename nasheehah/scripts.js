@@ -59,6 +59,8 @@ async function renderPrayDataForToday(){
         if(areDatesEqual(currentDate, extractDate(prayTime.date.gregorian.date))){
             console.log(prayTime);
 
+            nextPrayCountDownTimer(nextPray(prayTime.timings))
+
             renderDates(prayTime.date.hijri,  prayTime.date.gregorian);
 
             renderPrayTimes(prayTime.timings);
@@ -66,6 +68,111 @@ async function renderPrayDataForToday(){
             renderMetaData(prayTime.meta);
         }
     })
+}
+
+function nextPrayCountDownTimer(nextPrayTime){
+    if(localStorage.nextPrayTime === undefined && localStorage.nextPrayName === undefined){
+        localStorage.nextPrayTime = nextPrayTime[1].substring(0, nextPrayTime[1].indexOf(" ")) + ":59"; 
+        localStorage.nextPrayName = nextPrayTime[0];
+    }
+
+    if(localStorage.nextPrayTime === "00:00:00"){
+        localStorage.nextPrayTime = nextPrayTime[1].substring(0, nextPrayTime[1].indexOf(" ")) + ":59";
+        localStorage.nextPrayName = nextPrayTime[0];
+    }
+
+    setInterval(() =>{
+        const prayNameEl = document.querySelector("#upcoming-pray-name");
+        prayNameEl.innerText = localStorage.nextPrayName;
+    
+        const prayTimeEl = document.querySelector("#upcoming-pray-time");
+        localStorage.nextPrayTime = subTractTimerData(); 
+        prayTimeEl.innerText = localStorage.nextPrayTime;
+    }, 1000);
+
+}
+
+function subTractTimerData(){
+    let currentTime = localStorage.nextPrayTime;
+    let hours = Number(currentTime.substring(0, currentTime.indexOf(":")));
+    let mins = Number(currentTime.substring(currentTime.indexOf(":") + 1, currentTime.lastIndexOf(":")));
+    let seconds = Number(currentTime.substring(currentTime.lastIndexOf(":") + 1));
+
+    if(seconds !== 0){
+        seconds--;
+    }else if(mins !== 0){
+        mins--;
+        seconds = 59;
+    }else if(hours !== 0){
+        hours--;
+        mins = 59;
+    }else {
+        localStorage.nextPrayTime === "00:00:00";
+    }
+
+    hours = checkIfTimeLengthOfTwo(hours); 
+    mins = checkIfTimeLengthOfTwo(mins);
+    seconds = checkIfTimeLengthOfTwo(seconds);
+
+    return `${hours}:${mins}:${seconds}`;
+}
+
+function checkIfTimeLengthOfTwo(value){
+    value = "" + value;
+
+    if(value.length === 1){
+        value = "0" + value;
+        return value;
+    }
+
+    return value;
+}
+
+/*
+    let int = setInterval(() => {
+        if(second-- === 0) {
+            if(minute !== 0){
+                minute--;
+                second = 10;
+            }
+        }
+
+        if(second === 0 && minute === 0){
+            console.log("Done!!"); 
+            clearInterval(int)
+        }else{
+            console.log(minute, ":", second);
+        }
+    }, 1000);
+*/
+
+function nextPray(timings){
+    let currentDateHours = Number(new Date().getHours());
+    let lowestPrayHour = 100;
+    let prayTimeResult = "";
+    let prayNameResult = "";
+
+    for(let prayName in timings){
+        if(!(prayName === "Sunset" || prayName === "Imsak" || prayName === "Midnight")){
+            let currentPrayTime = timings[prayName];
+            let formattedPrayTime = getPrayTimeHours(currentPrayTime);
+
+            if(formattedPrayTime > currentDateHours){
+                if(formattedPrayTime < lowestPrayHour){
+                    lowestPrayHour = formattedPrayTime;
+                    prayTimeResult = currentPrayTime;
+                    prayNameResult = prayName; 
+                }
+            }
+        }
+    }
+
+    return [prayNameResult, prayTimeResult];
+}
+
+function getPrayTimeHours(prayTime){
+    console.log(prayTime);
+    return Number(prayTime.substring(0, prayTime.indexOf(":")));
 }
 
 function coOrdinateFormater(lat, long){
@@ -139,30 +246,6 @@ function extractDate(strDate){
     return new Date(year, --month, day);
 }
 
-let minute = 1;
-let second = 10;
+getLocation();
 
-function nextPrayCountDownTimer(){
-
-    let int = setInterval(() => {
-        if(second-- === 0) {
-            if(minute !== 0){
-                minute--;
-                second = 10;
-            }
-        }
-
-        if(second === 0 && minute === 0){
-            console.log("Done!!"); 
-            clearInterval(int)
-        }else{
-            console.log(minute, ":", second);
-        }
-    }, 1000);
-}
-
-nextPrayCountDownTimer()
-
-//getLocation();
-
-//renderPrayDataForToday();
+renderPrayDataForToday();
