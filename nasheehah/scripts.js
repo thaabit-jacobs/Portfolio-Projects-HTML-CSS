@@ -1,8 +1,6 @@
 `use strict`
 
-//get user location either from device they have to inoout there address
-//we will use method2 with an option to change later
-//current date will be used
+//function retrieves users geo location
 function getLocation(){
     if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(getTimesBasedOnUserCoordinates, getTimesBasedOnUserCity);
@@ -12,7 +10,7 @@ function getLocation(){
     }
 }
 
-//get user location if geolocation is enabled and allowed
+//getting user co-ordinates if enabled
 function getTimesBasedOnUserCoordinates(position){
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
@@ -22,13 +20,13 @@ function getTimesBasedOnUserCoordinates(position){
 
 //if do do not have access to the users location via geo location
 //use default data
-//once retrieved data will be saved in localstorage for subsequent request
 function getTimesBasedOnUserCity() {
         if(!localStorage.latitude || !localStorage.longitude){
             saveLatAndLongToLocalStorage(-26.0025, 28.0244);
         }
 }
 
+//save location to localstorage
 function saveLatAndLongToLocalStorage(latitude, longitude){
     localStorage.longitude = longitude;
     localStorage.latitude = latitude;
@@ -36,6 +34,7 @@ function saveLatAndLongToLocalStorage(latitude, longitude){
     return [latitude, longitude];
 }
 
+//retrieve pray times for current month of that year
 async function getPrayTimesCurrentMonthForYear(latitude, longitude, date){
     let [year, month] = date();
 
@@ -51,6 +50,7 @@ async function getPrayTimesCurrentMonthForYear(latitude, longitude, date){
 }
 
 
+//render all pray data to screen for month
 async function renderPrayDataForToday(){
     let praysForCurrentMonth = await getPrayTimesCurrentMonthForYear(localStorage.latitude, localStorage.longitude, currentDateData);
     let currentDate = new Date();
@@ -59,7 +59,7 @@ async function renderPrayDataForToday(){
         if(areDatesEqual(currentDate, extractDate(prayTime.date.gregorian.date))){
             console.log(prayTime);
 
-            nextPrayCountDownTimer(nextPray(prayTime.timings))
+            renderPrayCountDownTimer(prayTime.timings);
 
             renderDates(prayTime.date.hijri,  prayTime.date.gregorian);
 
@@ -70,68 +70,81 @@ async function renderPrayDataForToday(){
     })
 }
 
-function nextPrayCountDownTimer(nextPrayTime){
-    if(localStorage.nextPrayTime === undefined && localStorage.nextPrayName === undefined){
-        localStorage.nextPrayTime = differenceInDates(nextPrayTime); 
-        localStorage.nextPrayName = nextPrayTime[0];
+function currentDateData(){
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    let currentDate = new Date();
+    let currentYear = currentDate.getFullYear();
+    let currentMonth = currentDate.getMonth() + 1;
+    let currentDay = days[currentDate.getDay()];
+
+    return [currentYear, currentMonth, currentDay, currentDate.getDay()];
+}
+
+function nextPray(timings){
+    let currentDateHours = Number(new Date().getHours());
+    let currentDateMinutes = Number(new Date().getMinutes());
+    let lowestPrayHour = 100;
+    let prayTimeResult = "";
+    let prayNameResult = "";
+
+    for(let prayName in timings){
+        if(!(prayName === "Sunset" || prayName === "Imsak" || prayName === "Midnight")){
+            let currentPrayTime = timings[prayName];
+            let formattedPrayHour = getPrayTimeHoursAndMins(currentPrayTime)[0];
+            let formattedPrayMin = getPrayTimeHoursAndMins(currentPrayTime)[1];
+
+            if(formattedPrayHour > currentDateHours){
+                if(formattedPrayHour < lowestPrayHour){
+                    lowestPrayHour = formattedPrayHour;
+                    prayTimeResult = currentPrayTime;
+                    prayNameResult = prayName; 
+                }
+            }
+
+            if(formattedPrayHour === currentDateHours){
+                
+            }
+        }
     }
 
-    if(localStorage.nextPrayTime === "00:00:00"){
-        localStorage.nextPrayTime = differenceInDates(nextPrayTime)
-        localStorage.nextPrayName = nextPrayTime[0];
-    }
+    return [prayNameResult, prayTimeResult];
+}
 
-    setInterval(() =>{
-        const prayNameEl = document.querySelector("#upcoming-pray-name");
-        prayNameEl.innerText = localStorage.nextPrayName;
+function renderPrayCountDownTimer(prayTimings){
+    const prayTimeEl = document.querySelector("#upcoming-pray-time"); 
+    const prayNameEl = document.querySelector("#upcoming-pray-name");
+
+    let upcomingPray = nextPray(prayTimings);
     
-        const prayTimeEl = document.querySelector("#upcoming-pray-time");
-        localStorage.nextPrayTime = subTractTimerData(); 
-        prayTimeEl.innerText = localStorage.nextPrayTime;
+    setInterval(() => {
+        prayTimeEl.innerText = upcomingPray[1];
+        prayNameEl.innerText = upcomingPray[0];
+
+        if(prayTimeEl.innerText === "00:00:00"){
+            upcomingPray = nextPray(prayTimings);
+        }
     }, 1000);
-
 }
 
-function differenceInDates(nextPrayTime){
-    let dt1 = new Date();
 
-    let dt2 = new Date();
-    dt2.setHours(Number(nextPrayTime[1].substring(0, nextPrayTime[1].indexOf(":"))))
-    dt2.setMinutes(Number(nextPrayTime[1].substring(nextPrayTime[1].indexOf(":") + 1, nextPrayTime[1].indexOf(" "))));
-    dt2.setSeconds(59);
-    
-    let min = 1000 * 60;
-    let diffTime =(dt2.getTime() - dt1.getTime()); 
-    
-    let minDifferenc = diffTime /min;
-    
-    return `${checkIfTimeLengthOfTwo(Math.floor(minDifferenc/60))}:${checkIfTimeLengthOfTwo(Math.floor(minDifferenc%60))}:${59}`;
+function subtractTime(upcomingPrayTime, seconds){
+    let currentHour = new Date().getHours();
+    let currentMinute = new Date().getMinutes();
+
+    upcomingPrayTime = praytimeFormatter(upcomingPrayTime);
+
+    console.log(`${new Date().getHours()} ${new Date().getMinutes()}`);
 }
 
-function subTractTimerData(){
-    let currentTime = localStorage.nextPrayTime;
-    let hours = Number(currentTime.substring(0, currentTime.indexOf(":")));
-    let mins = Number(currentTime.substring(currentTime.indexOf(":") + 1, currentTime.lastIndexOf(":")));
-    let seconds = Number(currentTime.substring(currentTime.lastIndexOf(":") + 1));
 
-    if(seconds !== 0){
-        seconds--;
-    }else if(mins !== 0){
-        mins--;
-        seconds = 59;
-    }else if(hours !== 0){
-        hours--;
-        mins = 59;
-        seconds = 59;
-    }else {
-        localStorage.nextPrayTime === "00:00:00";
-    }
+/*
+12:14:00
+11:23:00
+*/
 
-    hours = checkIfTimeLengthOfTwo(hours); 
-    mins = checkIfTimeLengthOfTwo(mins);
-    seconds = checkIfTimeLengthOfTwo(seconds);
-
-    return `${hours}:${mins}:${seconds}`;
+function praytimeFormatter(upcomingPrayTime){
+    return upcomingPrayTime.substring(0, upcomingPrayTime.indexOf(" "));
 }
 
 function checkIfTimeLengthOfTwo(value){
@@ -145,33 +158,11 @@ function checkIfTimeLengthOfTwo(value){
     return value;
 }
 
-function nextPray(timings){
-    let currentDateHours = Number(new Date().getHours());
-    let lowestPrayHour = 100;
-    let prayTimeResult = "";
-    let prayNameResult = "";
-
-    for(let prayName in timings){
-        if(!(prayName === "Sunset" || prayName === "Imsak" || prayName === "Midnight")){
-            let currentPrayTime = timings[prayName];
-            let formattedPrayTime = getPrayTimeHours(currentPrayTime);
-
-            if(formattedPrayTime > currentDateHours){
-                if(formattedPrayTime < lowestPrayHour){
-                    lowestPrayHour = formattedPrayTime;
-                    prayTimeResult = currentPrayTime;
-                    prayNameResult = prayName; 
-                }
-            }
-        }
-    }
-
-    return [prayNameResult, prayTimeResult];
-}
-
-function getPrayTimeHours(prayTime){
-    console.log(prayTime);
-    return Number(prayTime.substring(0, prayTime.indexOf(":")));
+function getPrayTimeHoursAndMins(prayTime){
+    console.log(prayTime)
+    let hours = Number(prayTime.substring(0, prayTime.indexOf(":"))); 
+    let mins = Number(prayTime.substring(prayTime.indexOf(":") + 1, prayTime.indexOf(" "))); 
+    return [hours, mins];
 }
 
 function coOrdinateFormater(lat, long){
@@ -224,17 +215,6 @@ function dateBuilder(day, month, year){
 function areDatesEqual(date1, date2){
     return (date1.getFullYear() === date2.getFullYear()) && (date1.getMonth() === date2.getMonth()) &&
      (date1.getDate() === date2.getDate());
-}
-
-function currentDateData(){
-    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-    let currentDate = new Date();
-    let currentYear = currentDate.getFullYear();
-    let currentMonth = currentDate.getMonth() + 1;
-    let currentDay = days[currentDate.getDay()];
-
-    return [currentYear, currentMonth, currentDay, currentDate.getDay()];
 }
 
 function extractDate(strDate){
