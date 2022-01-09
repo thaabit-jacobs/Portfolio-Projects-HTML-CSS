@@ -59,7 +59,7 @@ async function renderPrayDataForToday(){
         if(areDatesEqual(currentDate, extractDate(prayTime.date.gregorian.date))){
             console.log(prayTime);
 
-            renderPrayCountDownTimer(prayTime.timings);
+            renderUpcomingPray(prayTime.timings);
 
             renderDates(prayTime.date.hijri,  prayTime.date.gregorian);
 
@@ -111,7 +111,7 @@ function nextPray(timings){
     return [prayNameResult, prayTimeResult];
 }
 
-function renderPrayCountDownTimer(prayTimings){
+function renderUpcomingPray(prayTimings){
     const prayTimeEl = document.querySelector("#upcoming-pray-time"); 
     const prayNameEl = document.querySelector("#upcoming-pray-name");
 
@@ -120,43 +120,14 @@ function renderPrayCountDownTimer(prayTimings){
     setInterval(() => {
         prayTimeEl.innerText = upcomingPray[1];
         prayNameEl.innerText = upcomingPray[0];
-
-        if(prayTimeEl.innerText === "00:00:00"){
-            upcomingPray = nextPray(prayTimings);
-        }
     }, 1000);
 }
 
-
-function subtractTime(upcomingPrayTime, seconds){
-    let currentHour = new Date().getHours();
-    let currentMinute = new Date().getMinutes();
-
-    upcomingPrayTime = praytimeFormatter(upcomingPrayTime);
-
-    console.log(`${new Date().getHours()} ${new Date().getMinutes()}`);
-}
-
-
-/*
-12:14:00
-11:23:00
-*/
 
 function praytimeFormatter(upcomingPrayTime){
     return upcomingPrayTime.substring(0, upcomingPrayTime.indexOf(" "));
 }
 
-function checkIfTimeLengthOfTwo(value){
-    value = "" + value;
-
-    if(value.length === 1){
-        value = "0" + value;
-        return value;
-    }
-
-    return value;
-}
 
 function getPrayTimeHoursAndMins(prayTime){
     console.log(prayTime)
