@@ -45,11 +45,14 @@ button {
   max-width: 100%;
   height: auto;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  row-gap: 2em;
 }
 
 #prays-table{
-  min-width: 65%;
+  min-width: 75%;
   margin: 2em;
   background: #fff;
   display: flex;
@@ -166,8 +169,6 @@ color: var(--text-gray);
   color: var(--text-gray);
 }
 
-
-
 #layer-4{
   width: 100%;
   height: 13vh;
@@ -180,4 +181,117 @@ color: var(--text-gray);
 
 .hidden{
   color: var(--main-lighter-background);
+}
+
+.calendar-table{
+  width: 75%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  row-gap: 2em;
+  margin-bottom: 2em; 
+}
+
+#hijri-calendar{
+  width:90%;
+  margin-bottom: 2em; 
+}
+
+
+table, th, td, tr {
+  padding: 0.5em 1em;
+  border-spacing: 0.5em;
+  border-collapse: collapse;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+tr:hover{
+  color: var(--layer-2-gradient-green);
+}
+
+.bg-off-white{
+  background: var(--main-lighter-background);
+}
+
+.bg-white{
+  background: #fff;
+  border: #fff solid 1px;
+}
+
+.font-weight-none{
+  font-weight: none;
+}
+
+.cell {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+#calendar-left-content{
+  width: 90%;
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1em;
+}
+
+#month-year-picker{
+  height: 2.2rem;
+  width: 15rem;
+  border: rgba(185, 182, 182, 0.452) solid 1px;
+  border-radius: 5px;
+}
+
+#submit{
+  height: 1.8rem;
+  width: 10rem;
+  font-size: 1rem;
+  border-radius: 7px;
+  background: var(--main-green);
+  color: #fff;
+  border: none;
+}
+
+#submit:active{
+  background: #fff;
+  color: var(--main-green);
+}
+
+#submit:hover{
+  box-shadow:  3px 3px 15px 3px var(--layer-2-gradient-green); 
+}
+
+#show-button{
+  height: 1.8rem;
+  width: 5rem;
+  font-size: 1rem;
+  border-radius: 7px;
+  background: var(--main-green);
+  color: #fff;
+  border: none;
+  margin-bottom: 1em;
+}
+
+#show-button:active{
+  background: #fff;
+  color: var(--main-green);
+}
+
+#show-button:hover{
+  box-shadow:  3px 3px 15px 3px var(--layer-2-gradient-green); 
+}
+
+.hide{
+  display: none;
 }
