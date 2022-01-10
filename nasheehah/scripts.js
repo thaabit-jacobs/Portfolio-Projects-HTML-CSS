@@ -206,6 +206,21 @@ function nextPray(timings){
     return [prayNameResult, prayTimeResult];
 }
 
+function renderLocation(){
+    fetch("https://geolocation-db.com/json/d802faa0-10bd-11ec-b2fe-47a0872c6708")
+        .then(res => res.json())
+        .then(data => {
+            const city = document.querySelectorAll(".city");
+            const state = document.querySelectorAll(".state");
+            const country = document.querySelectorAll(".country");
+
+            city.forEach(c => c.innerText = data.city); 
+            state.forEach(s => s.innerText = data.state);
+            country.forEach(c => country.innerText = data["country_name"]) 
+            ; 
+            
+        });
+}
 function renderUpcomingPray(prayTimings){
     const prayTimeEl = document.querySelector("#upcoming-pray-time"); 
     const prayNameEl = document.querySelector("#upcoming-pray-name");
@@ -347,3 +362,5 @@ showButton.addEventListener("click", (event) => {
     }
 
 })
+
+renderLocation();
