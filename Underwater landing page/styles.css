@@ -91,6 +91,43 @@ body {
     box-shadow:  none;
 }
 
+.delay-1{
+    animation-delay: 1s;
+}
+
+.delay-2{
+    animation-delay: 2s;
+}
+.delay-3{
+    animation-delay: 3s;
+}
+.delay-4{
+    animation-delay: 4s;
+}
+.delay-5{
+    animation-delay: 5s;
+}
+
+.bubble{
+    opacity: 0;
+    animation-name: floatingBubbles;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    object-fit: contain;
+}
+
+.large{
+    width: 4rem;
+}
+
+.medium{
+    width: 3rem;
+}
+
+.small{
+    width: 2rem;
+}
+
 main{
     min-height: 100vh;
     display: grid;
@@ -120,39 +157,15 @@ aside {
     width: 9rem;
 }
 
-.bubble{
-    width: 3rem;
-    animation-name: floatingBubbles;
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-}
-
-.delay-1{
-    animation-delay: 1s;
-}
-
-.delay-2{
-    animation-delay: 2s;
-}
-.delay-3{
-    animation-delay: 3s;
-}
-.delay-4{
-    animation-delay: 4s;
-}
-.delay-5{
-    animation-delay: 5s;
-}
-
 @keyframes floatingBubbles {
     from {
-        opacity: 0.1;
+        opacity: 0.9;
         bottom: 0;
         transform: translate(0, 0)
     }
     to {
-        opacity: 0.9;
+        opacity: 0;
         bottom: 70%;
-        transform: translate(0, -500px)
+        transform: translate(0, -400px)
     }
 }
