@@ -8,8 +8,53 @@
     <title>Countdown timer</title>
 </head>
 <body>
-    
-        <h1 id="timer">00:00:00</h1>
+    <div class="overlay hide">
+        <div class="form-container">
+            <div class="form-heading">
+                <h2>Edit Timer</h2>
+                <button id="close-form">X</button>
+            </div>
+
+            <form id="timer-form">
+                <div class="input-fields">
+                    <div class="form-item">
+                        <input type="number" name="hrs" id="hrs" min="0" required>
+                        <label for="hours">HRS</label>
+                    </div>
+                    :
+                    <div class="form-item">
+                        <input type="number" name="mins" id="mins" min="0" max="59" required>
+                        <label for="mins">MINS</label>
+                    </div>
+                    :
+                    <div class="form-item">
+                        <input type="number" name="secs" id="secs" min="0" max="59" required>
+                        <label for="secs">SECS</label>
+                    </div>
+                </div>
+
+                <input type="submit" value="Done" id="submit">
+            </form>
+        </div>
+    </div>
+
+    <nav>
+        <p>Timer</p>
+    </nav>
+
+    <main>
+        <p id="timer">
+            <span id="hours">00</span><span>:</span>
+            <span id="minutes">00</span><span>:</span>
+            <span id="seconds">00</span>
+        </p>
+
+        <div class="btn-grp">
+            <button id="start">Start</button>
+            <button id="reset">Reset</button>
+            <button id="set">Set</button>
+        </d>
+    </main>
 
     <script src="scripts.js"></script>
 </body>

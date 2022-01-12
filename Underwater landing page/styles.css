@@ -17,6 +17,32 @@ body {
     color: #fff;
 }
 
+main{
+    min-height: 100vh;
+    display: grid;
+    grid-template-areas:
+        "header aside";
+    grid-template-columns: 4fr 5rem;
+    background-image: url(images/background.png);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+header{
+    grid-area: header;
+}
+
+aside {
+    min-height: 100vh;
+    background: rgba(0, 0, 0, 0.3);
+    grid-area: aside;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
 .flex-box{
     display: flex;
 }
@@ -128,34 +154,26 @@ body {
     width: 2rem;
 }
 
-main{
-    min-height: 100vh;
-    display: grid;
-    grid-template-areas:
-        "header aside";
-    grid-template-columns: 4fr 5rem;
-    background-image: url(images/background.png);
-    background-size: cover;
-    background-position: center;
-}
-
-header{
-    grid-area: header;
-}
-
-aside {
-    min-height: 100vh;
-    background: rgba(0, 0, 0, 0.3);
-    grid-area: aside;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
-}
 
 #logo{
     width: 9rem;
 }
+
+.over-lay{
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    flex-direction: column;
+    row-gap: 2em;
+    z-index: 1;
+    position: absolute;
+}
+
+.hide{
+    display: none;
+}
+
 
 @keyframes floatingBubbles {
     from {
@@ -166,6 +184,55 @@ aside {
     to {
         opacity: 0;
         bottom: 70%;
-        transform: translate(0, -400px)
+        transform: translate(0, -480px)
+    }
+}
+
+@media screen and (max-width: 585px) {
+    .header-content{
+        height: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 1em;
+        margin: 0 1rem;
+    }
+
+    .header-content h1{
+        font-size: 3rem;
+    }
+
+    nav {
+        justify-content:space-around;
+        margin: 0;
+    }
+    
+    nav button{
+        display: none;
+    }
+
+    aside{
+        display: none;
+    }
+
+    main{
+        grid-template-areas:
+            "header";
+        grid-template-columns: 100%;
+    }
+
+    #logo{
+        margin-left: 1em;
+    }
+
+    #menue{
+        display: inline;
+        margin-right: 1em;
+    }
+
+    .over-lay{
+        display: flex;
     }
 }
