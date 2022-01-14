@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +8,9 @@
     <link rel="stylesheet" href="styles.css">
     <title>Quiz App</title>
 </head>
+
 <body>
-    
+
     <div class="question-container">
         <div class="question-container-header">
             <h1>Quiz Application</h1>
@@ -17,27 +19,26 @@
 
         <div class="question-number-wrapper">
             <div class="question-section">
-                <h2><span id="question-number">5.</span> What does XML stand for?</h2>
-    
-                <div class="questions">
-                    <input type="radio" id="html" name="fav_language" value="HTML">
-                        <label for="html">eXtensible Markup Language</label><br>
-                        <input type="radio" id="css" name="fav_language" value="CSS">
-                        <label for="css">eXcutable Mutiple Language</label><br>
-                        <input type="radio" id="javascript" name="fav_language" value="JavaScript">
-                        <label for="javascript">eXTra Mutiple-Program Language</label><br>
-                        <input type="radio" id="javascript" name="fav_language" value="JavaScript">
-                        <label for="javascript">eXTra Mutiple-Program Language</label>
+                <h2 id="question"></h2>
+
+                <div class="answers">
+
                 </div>
-    
+
                 <div class="misc">
-                    <p>5 of 5 Questions</p>
-                    <button>Next Ques</button>
+                    <p><span id="current-test-number">5</span> of <span id="total-numbe-text">5</span> Questions</p>
+                    <button id="next-ques">Next Ques</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="done-container hide">
+        <p>Your scored <span id="score">2<span> out of 5 </p>
+            <button id="try-again">Try Again</button>
+    </div>
+
     <script src="script.js"></script>
 </body>
+
 </html>
