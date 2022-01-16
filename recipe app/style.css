@@ -17,14 +17,13 @@ body {
 
 nav {
     background: var(--main-color);
-    display: flex;
-    justify-content: center;
+    text-align: left;
     color: #fff;
 }
 
 nav p {
     font-size: 3rem;
-    padding: 1rem;
+    padding: 1rem 0;
 }
 
 header h1{
@@ -35,16 +34,101 @@ header > p {
     color: var(--secondary-color);
 }
 
+.meals-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 25%);
+    grid-template-rows: auto;
+    row-gap: 2.5rem;
+    justify-content: center;
+}
+
 .meal-card {
-    height: 25rem;
-    width: 17rem;
-    background: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.meal-card img {
+    width: 80%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.meal-card a{
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+    color: #61a5a0;
+} 
+
+.ingredients-meals{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.ingredients-meals .meal-card{
+    width: 27%;
+}
+
+.ingredients-meals button{
+    color: #61a5a0;
+    border: none;
+    background: none;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .center-text{
     text-align: center;
 }
 
+#meal-form input[type='text']{
+    height: 2rem;
+    width: 18rem;
+    border: #f3f3f3 solid 2px;
+    border-radius: 5px;
+}
+
+#meal-form input[type='text']:focus{
+    outline: none;
+    border: #1b7e77 solid 2px;
+}
+
+#meal-form input[type='submit']{
+    border: #1b7e77 solid 2px;
+    background: none;
+    max-height: 2rem;
+    width: 4rem;
+    color: #8ec9c5;
+    padding: 0.2rem 0 0.25rem 0;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+#meal-form input[type='submit']:hover{
+    border: #9df0ea solid 2px;
+    color: #205e59;
+}
+
+.searched-meal {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.searched-meal > .meal-card{
+    width: 25%;
+}
 .mx-1{
     margin-inline: 1rem;
 }
@@ -59,4 +143,16 @@ header > p {
 
 .mb-1{
     margin-bottom: 1rem;
+}
+
+.mb-2{
+    margin-bottom: 2rem;
+}
+
+.ml-1{
+    margin-left: 2rem;
+}
+
+.ml-2{
+    margin-left: 2rem;
 }

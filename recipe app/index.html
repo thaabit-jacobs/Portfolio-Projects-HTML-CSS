@@ -10,10 +10,10 @@
 <body>
     <header>
         <nav>
-            <p>Recipe App</p>
+            <p class="ml-1">Recipe App</p>
         </nav>
 
-        <h1 class="center-text my-2">Recipes</h1>
+        <h1 class="ml-1 my-1">Recipes</h1>
         <p class="center-text mx-1 mb-1">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora optio,
              consequuntur at in sequi eos est reiciendis doloremque beatae, eius ipsum
@@ -22,9 +22,39 @@
     </header>
 
     <main>
-        <div class="random-meals-container">
+        <form id="meal-form" class="center-text my-1">
+            <input type="text" name="search" placeholder="Search for a meal">
+
+            <input type="submit" value="find">
+        </form>
+
+        <div class="searched-meal">
 
         </div>
+
+        <h2 class="pick-of-week center-text my-2">Picks of the week</h2>
+        
+        <div class="meals-container">
+            
+        </div>
+
+        <h2 class="recipe-ingredients center-text my-2">Recipes by ingredients</h2>
+
+        <div class="ingredients-meals mb-2">
+            <div class="meal-card">
+                <img src="https://themealdb.com/images/ingredients/Beef.png" alt="">
+                <button id="beef">Beef</button>
+            </div>
+            <div class="meal-card">
+                <img src="https://themealdb.com/images/ingredients/Salmon.png" alt="">
+                <button id="salmon">Salmon</button>
+            </div>
+            <div class="meal-card">
+                <img src="https://themealdb.com/images/ingredients/Chicken.png" alt="">
+                <button id="chicken">Chicken</button>
+            </div>
+        </div>
+
     </main>
     <script src="script.js"></script>
 </body>
