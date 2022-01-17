@@ -44,6 +44,7 @@ header > p {
 }
 
 .meal-card {
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -129,8 +130,84 @@ header > p {
 .searched-meal > .meal-card{
     width: 25%;
 }
+
+.over-lay{
+    width: 100%;
+    height: auto;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    row-gap: 2em;
+    z-index: 1;
+    position: absolute;
+}
+
+.recipe-container{
+    width: 50%;
+    height: auto;
+    background: #fff;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem ;
+}
+
+.recipe-container > button{
+    background: none;
+    border: none;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.recipe-title {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.recipe-img{
+    height: auto;
+    width: 40%;
+    margin: 1rem auto;
+    text-align: center;
+}
+
+.recipe-ingre {
+    font-size: 1.75rem;
+}
+
+.recipe-ingre-list{
+    list-style: none;
+}
+
+.recipe-instr{
+    font-size: 1.75rem;
+}
+
+.meal-card-name{
+    background: none;
+    border: none;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #61a5a0;
+    cursor: pointer;
+}
+
+.meal-card .fav-icon{
+    width: 15%;
+    height: auto;
+}
+
 .mx-1{
     margin-inline: 1rem;
+}
+.mx-2{
+    margin-inline: 2rem;
 }
 
 .my-1{
@@ -155,4 +232,8 @@ header > p {
 
 .ml-2{
     margin-left: 2rem;
+}
+
+.left-align{
+    text-align: left;
 }
