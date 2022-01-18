@@ -4,6 +4,7 @@ const beefBtn = document.querySelector("#beef");
 const salmonBtn = document.querySelector("#salmon");
 const form = document.querySelector("#meal-form");
 const searchItemEl = document.querySelector(".searched-meal");
+const saveBtn = document.querySelector("nav button");
 
 async function getRandomMeal(){
     const response = await fetch(
@@ -307,10 +308,11 @@ function renderMealCardCategory(meals){
         mealImg.setAttribute("src", mealObj.strMealThumb);
     
         let mealTitle = await getMealsById(mealObj.idMeal);
+        let mealHeart = createFavEventLisstener(mealObj);
     
-        console.log(mealTitle);
         mealCard.appendChild(mealImg);
         mealCard.appendChild(mealTitle);
+        mealCard.appendChild(mealHeart);
     
         mealsContainer.appendChild(mealCard);
     })
@@ -394,6 +396,10 @@ form.addEventListener("submit", async (event) => {
 
     form.reset();
 });
+
+saveBtn.addEventListener("click", ()=> {
+    location.reload();    
+})
 
 if(localStorage.favs === undefined){
     localStorage.favs = "52813";

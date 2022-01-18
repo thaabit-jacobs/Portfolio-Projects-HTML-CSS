@@ -17,13 +17,27 @@ body {
 
 nav {
     background: var(--main-color);
-    text-align: left;
+    text-align: center;
     color: #fff;
+    position: sticky;
+    top: 0;
 }
 
 nav p {
     font-size: 3rem;
     padding: 1rem 0;
+}
+nav button{
+    border: #1b7e77 solid 2px;
+    background: white;
+    max-height: 2rem;
+    width: 4rem;
+    color: #8ec9c5;
+    padding: 0.2rem 0 0.25rem 0;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 1rem;
 }
 
 header h1{
@@ -60,7 +74,7 @@ header > p {
 
 .meal-card a{
     text-align: center;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: bold;
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
@@ -190,7 +204,7 @@ header > p {
     background: none;
     border: none;
     text-align: center;
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: bold;
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
@@ -236,4 +250,33 @@ header > p {
 
 .left-align{
     text-align: left;
+}
+
+@media screen and (max-width: 880px){
+    .meals-container{
+        grid-template-columns: repeat(2, 50%);
+    }
+
+    .recipe-container{
+        width: 70%;
+    }
+}
+
+
+@media screen and (max-width: 560px){
+    nav p {
+        text-align: center;
+    }
+
+    header h1{
+        text-align: center;
+    }
+    
+    .meals-container{
+        grid-template-columns: repeat(1, 80%);
+    }
+
+    .recipe-container{
+        width: 90%;
+    }
 }
