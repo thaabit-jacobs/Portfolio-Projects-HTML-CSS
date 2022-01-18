@@ -76,21 +76,28 @@ function renderMealCard(mealObj){
     mealCard.appendChild(mealTitle);
     mealCard.appendChild(mealHeart);
 
-    mealsContainer.appendChild(mealCard);
+    document.querySelector(".random-meals").appendChild(mealCard);
 }
 
 function createFavEventLisstener(mealObj){
+    let mealId  = mealObj.idMeal;
+
     let mealHeart = document.createElement("img");
     mealHeart.className = "fav-icon";
-    mealHeart.setAttribute("src", "images/white-heart.svg");
+
+    if(localStorage.favs.indexOf(mealId) !== -1){
+        mealHeart.setAttribute("src", "images/red-heart.svg");
+    }else{
+        mealHeart.setAttribute("src", "images/white-heart.svg");
+    }
 
     mealHeart.addEventListener("click", () => {
         if(mealHeart.getAttribute("src") === "images/white-heart.svg"){
             mealHeart.setAttribute("src", "images/red-heart.svg");
-            addToFavourites(mealObj.idMeal);
+            addToFavourites(mealId);
         }else{
             mealHeart.setAttribute("src", "images/white-heart.svg");
-            removeFromFavourites(mealObj.idMeal);
+            removeFromFavourites(mealId);
             console.log("hello")
         }
     })
@@ -101,37 +108,76 @@ function createFavEventLisstener(mealObj){
 //favourites
 
 function addToFavourites(mealId){
-    if(localStorage.favs === undefined){
+    if(localStorage.favs === undefined || localStorage.favs === ""){
         let favs = "";
         favs = favs.concat(mealId);
         localStorage.favs = favs;
     }else{
-        favs = localStorage.favs;
-        favs = favs.concat("," + mealId);
-        localStorage.favs = favs;
+        let favs = localStorage.favs.split(",");
+
+        if(favs.length !== 6){
+            favs = localStorage.favs;
+            favs = favs.concat("," + mealId);
+            localStorage.favs = favs;
+        }
     }
 
     console.log(localStorage.favs)
 }
+
 
 function removeFromFavourites(mealId){
     let favs = localStorage.favs;
-    let startMealIdIndex = favs.indexOf(mealId); 
-    let endMealIdIndex = favs.indexOf(",", startMealIdIndex); 
 
-    if(startMealIdIndex === 0){
-        favs = favs.substring(endMealIdIndex + 1);
-    }else if(endMealIdIndex === favs.length - 1){
-        favs = favs.substring(0, startMealIdIndex);
-    }else {
-        favs = favs.substring(0, startMealIdIndex).concat(favs.substring(endMealIdIndex + 1));
-    }
+    favs = favs.split(",")
+               .filter(id => id !== mealId)
+               .join(","); 
 
     localStorage.favs = favs;
 
-    console.log(localStorage.favs)
+     console.log(localStorage.favs)
 }
 
+function renderFavourites(){
+    if(localStorage.favs !== undefined){
+        localStorage.favs
+        .split(",")
+        .forEach(async mealId => {
+            const response = await fetch(
+                `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
+            );
+
+            
+        
+            try{
+                const restData = await response.json();
+                const mealObj = await restData.meals[0];
+            
+                let mealCard = document.createElement("div");
+                mealCard.className = "meal-card";
+                
+                let mealImg = document.createElement("img");
+                mealImg.className = "meal-card-img";
+                mealImg.setAttribute("src", mealObj.strMealThumb);
+            
+                let mealTitle = createBtnEventListener(mealObj);
+                mealTitle.innerText = mealObj.strMeal;
+            
+                let mealHeart = createFavEventLisstener(mealObj);
+            
+                mealCard.appendChild(mealImg);
+                mealCard.appendChild(mealTitle);
+                mealCard.appendChild(mealHeart);
+            
+                document.querySelector(".favs-meal").appendChild(mealCard);
+            }catch(error){
+                console.log(error);
+            }
+ 
+        })
+    }
+
+}
 //
 function createBtnEventListener(mealObj){
 
@@ -333,8 +379,11 @@ form.addEventListener("submit", async (event) => {
         let mealTitle = createBtnEventListener(mealObj);
         mealTitle.innerText = mealObj.strMeal;
     
+        let mealHeart = createFavEventLisstener(mealObj);
+    
         mealCard.appendChild(mealImg);
         mealCard.appendChild(mealTitle);
+        mealCard.appendChild(mealHeart);
 
         searchItemEl.appendChild(mealCard);
 
@@ -346,8 +395,12 @@ form.addEventListener("submit", async (event) => {
     form.reset();
 });
 
+if(localStorage.favs === undefined){
+    localStorage.favs = "52813";
+}
 
 getNRandomMeal(6)
+renderFavourites();
 
 
 //https://themealdb.com/images/ingredients/Beef.png
