@@ -49,11 +49,21 @@ main{
     margin: 2rem 2rem 1rem 2rem;
 }
 
-.note-display-container h1{
+.note-display-container input[type='text']{
+    font-size: 2rem;
+    border: none;
+    border-bottom: #ecececf3 solid 1px;
+    width: 100%;
+    padding-bottom: 1rem;
     margin-bottom: 2rem;
 }
 
+.note-display-container input[type='text']:focus{
+    outline: none;
+}
+
 .note-display-container textarea{
+    width: 100%;
     font-family: 'Oxygen', sans-serif;
     font-size: 1.2rem;
     overflow-y: hidden;
