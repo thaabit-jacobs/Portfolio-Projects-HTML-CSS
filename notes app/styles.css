@@ -53,8 +53,17 @@ main{
     margin-bottom: 2rem;
 }
 
-.note-display-container p{
-    margin-bottom: 1em;
+.note-display-container textarea{
+    font-family: 'Oxygen', sans-serif;
+    font-size: 1.2rem;
+    overflow-y: hidden;
+    resize: none;
+    border: none;
+}
+
+.note-display-container textarea:focus{
+    border: none;
+    outline: none;
 }
 
 .note{
@@ -63,6 +72,7 @@ main{
     margin-inline: auto;
     border-radius: 5px;
     padding: 0.5rem 0.3rem;
+    cursor: pointer;
 }
 
 .note h2{
