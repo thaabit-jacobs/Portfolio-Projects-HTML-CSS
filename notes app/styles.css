@@ -8,18 +8,21 @@
 
 body{
     font-family: 'Oxygen', sans-serif;
+    overflow-y: hidden;
 }
 
 main{
     width: 100%;
     min-height: 100vh;
     display: flex;
+    
 }
 
 .all-notes-container{
     width: 20%;
+    max-height: 95vh;
     margin: 1rem 0;
-    border-right: #dbdbdbf3 solid 3px;
+    overflow-y: auto;
 }
 
 .all-notes-container-narrow{
@@ -45,8 +48,13 @@ main{
 }
 
 .note-display-container{
+    max-height: 94vh;
     width: 80%;
+    overflow-y: auto;
     margin: 2rem 2rem 1rem 2rem;
+    border-left: #dbdbdbf3 solid 3px;
+    padding-left:2rem;
+    padding-right:2rem;
 }
 
 .note-display-container input[type='text']{

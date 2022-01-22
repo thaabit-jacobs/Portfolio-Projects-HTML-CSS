@@ -108,6 +108,7 @@ function saveNote(note){
             foundNote.heading = note.heading;                                    
             foundNote.text = note.text;                                    
             foundNote.date = formatDate(new Date());
+            foundNote.timestamp = new Date();
             
             localStorage.notes += "splitIndicator" + JSON.stringify(foundNote);
         }
@@ -143,7 +144,7 @@ function renderNotes(){
              .map(note => JSON.parse(note))
              .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
              .forEach(note => {
-                 console.log(note);
+                 console.log(note)
                 notesContainer.appendChild(createNote(note));
              })
     }else{
