@@ -1,24 +1,3 @@
-/*let keysPressed = {};
-
-document.addEventListener('keydown', (event) => {
-keysPressed[event.key] = true;
-
-if (keysPressed['Control'] && event.key == 'a') {
-    alert(event.key);
-}
-});
-
-document.addEventListener('keyup', (event) => {
-    delete keysPressed[event.key];
-});
-
-const btn = document.querySelector("#click"); 
-
-btn.addEventListener("dblclick", (event) => {
-    console.log("hello world")
-})
-*/
-
 let keysPressed = {};
 const displayHead = document.querySelector(".container-heading");
 const displayText = document.querySelector(".container-text");
@@ -134,8 +113,8 @@ function deleteNote(note){
 ///////////////utilities ///////////////
 function renderNotes(){
     let notes = localStorage.notes;
-
-    if(notes !== undefined || notes !== ""){
+    
+    if(notes !== undefined && notes !== ""){
         [...notesContainer.childNodes]
                       .filter(child => child.id !== "add-note")
                       .forEach(child => child.remove());
@@ -210,9 +189,4 @@ function formatDate(date){
     return `${currentDay}, ${currentDate} ${currentMonth} ${currentYear} at ${currentHour}:${currentMin}:${currentSeconds}`;
 }
 
-function parseDate(dateStr){
-    
-}
-
-//localStorage.clear()
 renderNotes();
