@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+button{
+    outline: none;
+    border: none;
+}
+
+body{
+    width: 100%;
+    min-height: 98vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 1rem;
+    background-image: linear-gradient(70deg, #aae5f7, #6ebcfc);
+    font-family: 'Oswald', sans-serif;
+}
+
+h1{
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.inputs{
+    display: flex;
+    margin-bottom: 1.5rem;
+}
+
+.input-container{
+    display: flex;
+    height: 2rem;
+    margin-right: 1rem;
+}
+
+.plus{
+    fill: #fff;
+    width: 2rem;
+    height: 2rem;
+}
+
+input, select{
+    height: 2rem; 
+}
+input{
+    font-weight: bold;
+    margin-right: 2px;
+}
+
+select{
+    font-weight: bold;
+    color: #6ebcfc;
+}
+
+input:focus, select:focus{
+    font-weight: bold;
+    outline: none;
+}
+
+.todo{
+    width: 25rem;
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    background: #fff;
+}
+
+.todo-text{
+    font-weight: bold;
+    margin-left: 1rem;
+    margin-block: auto;
+}
+
+.icon-grp {
+    display: flex;
+}
+
+.todo-icon{
+    width: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.complete {
+    background: rgb(29, 226, 29);
+    cursor: pointer;
+}
+
+.delete{
+    background: #63b4f7;
+    cursor: pointer;
+}
+
+.white{
+    fill:#fff;
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+
