@@ -96,17 +96,14 @@ function saveNote(note){
 }
 
 function deleteNote(note){
-    if(localStorage.notes === 1){
-        localStorage.notes = "";
-    }else {
+    
         let notes = localStorage.notes;
         notes = notes.split("splitIndicator")
                      .filter(savedNote => savedNote !== JSON.stringify(note))
                      .join("splitIndicator");
 
-        localStorage.notes = notes;
-    }
-
+    localStorage.notes = notes;
+    
     renderNotes();
 }
 
@@ -131,6 +128,14 @@ function renderNotes(){
     }
 }
 
+function noteTextShortener(noteText){
+    if(noteText.length > 10){
+        return noteText.substring(0, 11).concat("...");
+    }
+
+    return noteText;
+}
+
 function createNote(note){
     let noteDiv = document.createElement("div");
     noteDiv.className = "note";
@@ -140,7 +145,7 @@ function createNote(note){
     
     let textContent = document.createElement("p");
     textContent.className = "note-text";
-    textContent.innerText = note["text"];
+    textContent.innerText = noteTextShortener(note["text"]);
 
     let textDate = document.createElement("p");
     textDate.className = "note-date";
@@ -189,4 +194,5 @@ function formatDate(date){
     return `${currentDay}, ${currentDate} ${currentMonth} ${currentYear} at ${currentHour}:${currentMin}:${currentSeconds}`;
 }
 
+//localStorage.clear()
 renderNotes();
