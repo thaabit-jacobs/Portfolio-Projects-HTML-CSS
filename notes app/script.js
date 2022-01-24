@@ -96,13 +96,20 @@ function saveNote(note){
 }
 
 function deleteNote(note){
-    
-        let notes = localStorage.notes;
-        notes = notes.split("splitIndicator")
-                     .filter(savedNote => savedNote !== JSON.stringify(note))
-                     .join("splitIndicator");
+    let notes = localStorage.notes;
 
-    localStorage.notes = notes;
+    if(notes.indexOf("splitIndicator") === -1){
+        console.log("hello")
+        localStorage.notes = "";
+
+        location.reload()
+    }else{
+        notes = notes.split("splitIndicator")
+        .filter(savedNote => savedNote !== JSON.stringify(note))
+        .join("splitIndicator");
+
+        localStorage.notes = notes;
+    }
     
     renderNotes();
 }
@@ -129,8 +136,8 @@ function renderNotes(){
 }
 
 function noteTextShortener(noteText){
-    if(noteText.length > 10){
-        return noteText.substring(0, 11).concat("...");
+    if(noteText.length > 20){
+        return noteText.substring(0, 20).concat("...");
     }
 
     return noteText;
