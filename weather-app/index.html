@@ -9,6 +9,59 @@
 </head>
 <body>
     
+    <div class="main-weather-details-container">
+        <h1>the weather</h1>
+
+        <div class="main-weather-details">
+            <p id="temp-celsius">22 C</p>
+
+            <div class="main-weather-details-column-wrapper">
+                <p id="city">Cape Town</p>
+                <p id="date">21:00 - Friday 9, 10 2021</p>
+            </div>
+
+            <div class="main-weather-details-column-wrapper">
+                <img id="conditions-icon" src="" alt="">
+                <p id="conditions"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="misc-weather-details-container">
+        <form id="search-city-form">
+            <input type="text" name="city-name" id="city-name" placeholder="Search City...">
+
+            <input type="submit" name="submit" id="submit">
+        </form>
+
+        <div class="locations">
+            <ul>
+                <li><a href="">New York</a></li>
+                <li><a href="">California</a></li>
+                <li><a href="">Paris</a></li>
+                <li><a href="">Tokyo</a></li>
+            </ul>
+        </div>
+
+        <div class="misc-weather-details">
+            <h2>Weather Details</h2>
+
+            <div class="space-between">
+                <p>Cloudy</p>
+                <p id="cloudy-stat">75%</p>
+            </div>
+            
+            <div class="space-between">
+                <p>Humidity</p>
+                <p id="humidity-stat">88%</p>
+            </div>
+
+            <div class="space-between">
+                <p>Wind</p>
+                <p id="wind-stat">25.9km/h</p>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
