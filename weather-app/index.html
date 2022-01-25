@@ -9,7 +9,7 @@
 </head>
 <body>
     
-    <div class="main-weather-details-container pl-2 pt-2 pb-4">
+    <div class="main-weather-details-container pl-2 pr-2 pt-2 pb-4">
         <h1 class="small-heading">the weather</h1>
 
         <div class="main-weather-details">
@@ -27,37 +27,40 @@
         </div>
     </div>
 
-    <div class="misc-weather-details-container">
-        <form id="search-city-form">
+    <div class="misc-weather-details-container pl-2 pr-2">
+        <form id="search-city-form" class="mb-3">
             <input type="text" name="city-name" id="city-name" placeholder="Search City...">
 
-            <input type="submit" name="submit" id="submit">
+            <label for="submit">
+                <img id="submit-img" src="images/icon/search.svg" alt="">
+                <input type="submit" name="submit" id="submit">
+            </label>
         </form>
 
-        <div class="locations">
+        <div class="locations mb-3">
             <ul>
-                <li><a href="">New York</a></li>
-                <li><a href="">California</a></li>
-                <li><a href="">Paris</a></li>
-                <li><a href="">Tokyo</a></li>
+                <li class="mb-2"><a href="">New York</a></li>
+                <li class="mb-2"><a href="">California</a></li>
+                <li class="mb-2"><a href="">Paris</a></li>
+                <li class="mb-2"><a href="">Tokyo</a></li>
             </ul>
         </div>
 
         <div class="misc-weather-details">
-            <h2>Weather Details</h2>
+            <h2 class="small-heading mb-2">Weather Details</h2>
 
-            <div class="space-between">
-                <p>Cloudy</p>
+            <div class="space-between mb-2">
+                <p class="bold">Cloudy</p>
                 <p id="cloudy-stat">75%</p>
             </div>
             
-            <div class="space-between">
-                <p>Humidity</p>
+            <div class="space-between mb-2">
+                <p class="bold">Humidity</p>
                 <p id="humidity-stat">88%</p>
             </div>
 
-            <div class="space-between">
-                <p>Wind</p>
+            <div class="space-between mb-2">
+                <p class="bold">Wind</p>
                 <p id="wind-stat">25.9km/h</p>
             </div>
         </div>
