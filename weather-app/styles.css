@@ -7,9 +7,65 @@
 }
 
 html{
-
+    --text-primary-color: #fff;
 }
 
 body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
     font-family: 'DM Sans', sans-serif;
+    background: url(images/cloudy.jpg);
+    background-position:center;
+    background-size:cover;
+}
+
+.main-weather-details-container{
+    width: 60%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--text-primary-color);
+}
+
+.main-weather-details{
+    display: flex;
+    align-items: center;
+    column-gap: 2em;
+}
+
+.misc-weather-details-container{
+    width: 40%;
+    height: 100%;
+}
+
+#temp-celsius{
+    font-size: 5rem;
+    font-weight: bolder;
+}
+
+#city{
+    font-size: 2rem;
+}
+
+.small-heading {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.pt-2{
+    padding-top: 2rem;
+}
+
+.pb-4{
+    padding-bottom: 4rem;
+}
+
+.pl-2{
+    padding-left: 2rem;
 }
