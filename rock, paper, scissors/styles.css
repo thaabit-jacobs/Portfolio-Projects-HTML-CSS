@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    font-family: 'Unica One', cursive;
+    background: #272a45;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    row-gap: 2rem;
+}
+
+.score-board{
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.score-container{
+    text-align: center;
+}
+
+.score-container p {
+    font-size: 2rem;
+}
+
+#winner{
+    font-size: 4rem;
+}
+
+.img-container{
+    display: flex;
+    column-gap: 2rem;
+}
+
+img{
+    width: 8rem;
+}
+
+.animate {
+    animation-name: moveAnimation;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+}
+
+.moves-container{
+    display: flex;
+    column-gap: 0.75rem;
+}
+
+button{
+    background: #256458;
+    color: #fff;
+    padding: 1em 2em;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover{
+    background: #1a443c;
+}
+
+@keyframes moveAnimation
+{
+    from {
+        transform:translateY(-10px);
+    }
+    to {
+        transform:translateY(10px);
+    }
+}
