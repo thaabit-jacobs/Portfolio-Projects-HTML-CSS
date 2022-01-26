@@ -87,7 +87,7 @@ function setWeatherData(data){
     let nextDaysForecast = data.forecast.forecastday;
 
     tempElement.innerHTML = `${currentDayForecast["temp_c"]}&deg;`
-    dateElement.innerHTML = getFormattedDate();
+    dateElement.innerHTML = data.location["localtime"];
     cityElement.innerText = data.location.name;
 
     cloudStatElement.innerText =  `${currentDayForecast["cloud"]}%`;
@@ -106,8 +106,61 @@ function setWeatherData(data){
     currentDay2ConditionElement.innerText = nextDaysForecast[2].day.condition.text;
     currentDay2TempElement.innerHTML = `${nextDaysForecast[2].day["avgtemp_c"]}&deg;`;
     currentDay2DateElement.innerText = nextDaysForecast[2].date;
+
+    changeBackgroundByCondition(data);
+
+    console.log(data);
 }
 
+function changeBackgroundByCondition(data){
+    let hour = Number(extractTime(data.current["last_updated"]));
+    let condition = data.current.condition.text;
+    
+    console.log(condition);
+    console.log(hour);
+
+    if(hour > 5 && hour < 19){
+        if(condition.indexOf("Sunny") !== -1){
+            setBackgroundImg("clear", "day")
+            console.log("sunny day");
+        }else if(condition.indexOf("cloud") !== -1 || condition.indexOf("overcast") !== -1){
+            setBackgroundImg("cloudy", "day")
+            console.log("cloudy day");
+        }else if(condition.indexOf("rain") !== -1){
+            setBackgroundImg("rainy", "day")
+            console.log("rainy day");
+        }else{
+            setBackgroundImg("snow", "day")
+            console.log("snow day");
+        }
+    }else{
+        if(condition.indexOf("Sunny") !== -1){
+            setBackgroundImg("clear", "night")
+            console.log("sunny night");
+        }else if(condition.indexOf("cloud") !== -1 || condition.indexOf("overcast") !== -1){
+            setBackgroundImg("cloudy", "night")
+            console.log("cloudy night");
+        }else if(condition.indexOf("rain") !== -1){
+            setBackgroundImg("rainy", "night")
+            console.log("rainy night");
+        }else{
+            setBackgroundImg("snow", "night")
+            console.log("snow night");
+        }
+    }
+}
+
+function setBackgroundImg(condition, timeOfDay){
+    let body = document.querySelector("body");
+    body.style.background =  `url(images/${timeOfDay}/${condition}.jpg)`;
+    body.style["background-position"] = "center";
+    body.style["background-size"] = "cover";
+    body.style["background-repeat"] = "no-repeat";
+}
+
+function extractTime(date){
+    return date.substring(date.indexOf(" ") + 1, date.indexOf(":"));
+}
 function getFormattedDate(){
     let date = new Date();
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];

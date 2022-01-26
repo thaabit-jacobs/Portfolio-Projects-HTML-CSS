@@ -38,7 +38,7 @@ body{
     height: 110vh;
     display: flex;
     font-family: 'DM Sans', sans-serif;
-    background: url(images/day/cloudy.jpg);
+    background: url(images/day/clear.jpg);
     background-position:center;
     background-size:cover;
     background-repeat: no-repeat;
