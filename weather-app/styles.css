@@ -16,6 +16,14 @@ li{
     list-style: none;
 }
 
+button {
+    border: none;
+    background: none;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+}
+
 a{
     color: #fff;
     text-decoration: none;

@@ -3,6 +3,30 @@
 const apiKey = "cf580544875b4f54906162956222401";
 const baseUrl = "http://api.weatherapi.com/v1";
 
+const tempElement = document.querySelector("#temp-celsius");
+const cloudStatElement = document.querySelector("#cloudy-stat");
+const humidityStatElement = document.querySelector("#humidity-stat");
+const windStatElement = document.querySelector("#wind-stat");
+const cityElement = document.querySelector("#city");
+const dateElement = document.querySelector("#date");
+
+const currentDayConditionIconElement = document.querySelector("#current-day-condition-icon");
+const currentDayConditionElement = document.querySelector("#current-day-condition");
+
+const currentDay1ConditionIconElement = document.querySelector("#next-day-1-condition-icon");
+const currentDay1ConditionElement = document.querySelector("#next-day-1-condition");
+const currentDay1TempElement = document.querySelector("#next-day-1-temp");
+const currentDay1DateElement = document.querySelector("#next-day-1-date");
+
+const currentDay2ConditionIconElement = document.querySelector("#next-day-2-condition-icon");
+const currentDay2ConditionElement = document.querySelector("#next-day-2-condition");
+const currentDay2TempElement = document.querySelector("#next-day-2-temp");
+const currentDay2DateElement = document.querySelector("#next-day-2-date");
+
+const form = document.querySelector("#search-city-form");
+
+const buttons = document.querySelectorAll("button");
+
 function saveUserLocation(){
     let lat = localStorage.latitude;
     let long = localStorage.longitude;
@@ -28,27 +52,6 @@ function setDefaultCoordinates(){
     localStorage.longitude = "18.42389";
 }
 
-const tempElement = document.querySelector("#temp-celsius");
-const cloudStatElement = document.querySelector("#cloudy-stat");
-const humidityStatElement = document.querySelector("#humidity-stat");
-const windStatElement = document.querySelector("#wind-stat");
-const cityElement = document.querySelector("#city");
-const dateElement = document.querySelector("#date");
-
-const currentDayConditionIconElement = document.querySelector("#current-day-condition-icon");
-const currentDayConditionElement = document.querySelector("#current-day-condition");
-
-const currentDay1ConditionIconElement = document.querySelector("#next-day-1-condition-icon");
-const currentDay1ConditionElement = document.querySelector("#next-day-1-condition");
-const currentDay1TempElement = document.querySelector("#next-day-1-temp");
-const currentDay1DateElement = document.querySelector("#next-day-1-date");
-
-const currentDay2ConditionIconElement = document.querySelector("#next-day-2-condition-icon");
-const currentDay2ConditionElement = document.querySelector("#next-day-2-condition");
-const currentDay2TempElement = document.querySelector("#next-day-2-temp");
-const currentDay2DateElement = document.querySelector("#next-day-2-date");
-
-const form = document.querySelector("#search-city-form");
 form.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -58,6 +61,10 @@ form.addEventListener("submit", (event) => {
 
     renderForeCastBySearch(cityName);
 })
+
+buttons.forEach(btn => btn.addEventListener("click", (event) => {
+    renderForeCastBySearch(btn.innerText);
+}));
 
 function renderForeCastByCorordinates(lat, long){
     fetch(`http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat},${long}&days=5`)
