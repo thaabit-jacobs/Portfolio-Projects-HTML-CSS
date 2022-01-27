@@ -43,8 +43,13 @@ body{
     column-gap: 2rem;
 }
 
+
 img{
     width: 8rem;
+}
+
+.com-img{
+    transform: scaleX(-1);
 }
 
 .animate {
@@ -74,8 +79,10 @@ button:hover{
 {
     from {
         transform:translateY(-10px);
+        
     }
     to {
-        transform:translateY(10px);
+        transform:translateY(0px);
+        
     }
 }
