@@ -79,7 +79,7 @@ nav p span{
     column-gap: 1rem;
     cursor: pointer;
     color: #fff;
-    transform: translatex(100%);
+    transform: translatex(70%);
     transition: all 750ms;
 }
 
