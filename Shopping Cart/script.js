@@ -49,7 +49,9 @@ fetch('https://fakestoreapi.com/products')
                     `
 
                     label.addEventListener("click", () => {
-                        
+                        let proArray = cart.products; 
+                        proArray.push(product);
+                        console.log(cart.products);
                     })
 
                     productDiv.appendChild(label);
