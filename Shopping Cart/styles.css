@@ -59,11 +59,11 @@ nav p span{
 #productContainer{
     display: grid;
     grid-template-columns: repeat(4, 10rem);
-    
     column-gap: 0.25rem;
     row-gap: 2rem;
     justify-content: space-evenly;
     margin-inline: 4rem;
+    margin-bottom: 5rem;
 }
 
 .product{
