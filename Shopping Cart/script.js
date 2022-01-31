@@ -1,9 +1,53 @@
 const productContainer = document.querySelector("#productContainer");
+const cartItemCount = document.querySelector("#cartItemCount");
 
 let cart = {
     products: [],
-    itemCount: 0,
-    totalPrice: 0
+    totalCost: 0,
+    productCount: 0
+};
+
+function addProduct(product){
+    let products = cart.products;
+    if(products.length === 0){
+        product.count = 1; 
+        products.push(product);
+    } else{
+        let foundProduct = products.find(p => p.id === product.id);
+
+        if(foundProduct !== undefined){
+            product.count = ++product.count; 
+        }else{
+            product.count = 1; 
+            products.push(product);
+        }
+    }
+
+    setCartPrice();
+    setProductLenth();
+}
+
+function setCartPrice(){
+    let totalCost = 0;
+
+    cart.products
+        .forEach(product => {
+                totalCost += product.price * product.count;
+        });
+
+    cart.totalCost = totalCost;
+
+}
+
+function setProductLenth(){
+    let productCount = 0;
+
+    cart.products
+        .forEach(product => {
+            productCount += product.count;
+        });
+
+    cart.productCount = productCount;
 }
 
 fetch('https://fakestoreapi.com/products')
@@ -48,10 +92,9 @@ fetch('https://fakestoreapi.com/products')
                     <p>add to cart</p>
                     `
 
-                    label.addEventListener("click", () => {
-                        let proArray = cart.products; 
-                        proArray.push(product);
-                        console.log(cart.products);
+                    label.addEventListener("click", () => { 
+                       addProduct(product);
+                       console.log(cart);
                     })
 
                     productDiv.appendChild(label);
