@@ -1,16 +1,30 @@
 const productContainer = document.querySelector("#productContainer");
 const cartItemCount = document.querySelector("#cartItemCount");
 const cartElement = document.querySelector("#cart");
-
-cartElement.addEventListener("click", (event) => {
-
-})
+const overLay = document.querySelector(".over-lay");
+const cartContainer = document.querySelector(".cart-container");
+const closeBtn = document.querySelector(".close-btn");
 
 let cart = {
     products: [],
     totalCost: 0,
     productCount: 0
 };
+
+cartElement.addEventListener("click", (event) => {
+    overLay.className = "over-lay";
+
+    renderCartProducts();
+})
+
+closeBtn.addEventListener("click", (event) => {
+    cartContainer.childNodes.forEach(p => {
+        console.log(p);
+    })
+
+    overLay.className = "over-lay hide";
+})
+
 
 function addProduct(product){
     let products = cart.products;
@@ -106,17 +120,13 @@ fetch('https://fakestoreapi.com/products')
                 });
 })
 
-const overLay = document.querySelector(".over-lay");
-const cartContainer = document.document.querySelector(".cart-container");
 
 function renderCartProducts(){
+    let yourCrt = document.createElement("h2");
+    yourCrt.className = "mb-1";
+    yourCrt.innerText = "Your Cart";
 
-    cartContainer.innerHTML = 
-    `            
-    <button class="mb-1">X</button>
-    <h2 class="mb-1">You Cart</h2>
-    `
-    
+    cartContainer.appendChild(yourCrt);
 
     renderCartItems();
 
@@ -125,8 +135,6 @@ function renderCartProducts(){
     totalCostEl.innerText = `Your Total: $ ${cart.totalCost}`;
 
     cartContainer.appendChild(totalCostEl);
-
-
 }
 
 function renderCartItems(){
@@ -158,13 +166,20 @@ function renderCartItems(){
         count.innerText = product.count;
 
         itemCount.appendChild(count);
-        itemCount.innerHTML = 
-        `
-        <div class="btn-grp">
-            <img src="images/plus.svg">
-            <img src="images/minus.svg">
-        </div>
-        `
+
+        let btnGrp = document.createElement("div");
+        btnGrp.className = "btn-grp";
+
+        let imgPlus = document.createElement("img");
+        imgPlus.setAttribute("src", "images/plus.svg");
+
+        let imgMinus = document.createElement("img");
+        imgMinus.setAttribute("src", "images/minus.svg");
+
+        btnGrp.appendChild(imgMinus);
+        btnGrp.appendChild(imgPlus);
+
+        itemCount.appendChild(btnGrp);
 
         cartItem.appendChild(itemCount);
         

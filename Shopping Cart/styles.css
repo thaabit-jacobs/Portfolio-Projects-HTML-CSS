@@ -43,6 +43,7 @@ nav p span{
 
 #cart{
     position: relative;
+    cursor: pointer;
 }
 
 .cart-wrapper{
@@ -196,6 +197,10 @@ nav p span{
 
 .btn-grp img{
     cursor: pointer;
+}
+
+.hide{
+    display: none;
 }
 
 .sec-color{
