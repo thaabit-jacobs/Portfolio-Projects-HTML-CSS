@@ -9,10 +9,13 @@
 html{
     --primary: #e4dfd8;
     --secondary:  #ee8e40;
+    --over-lay-secondary:  #f0ac74;
 }
 
 body {
     font-family: 'Roboto', sans-serif;
+    position: relative;
+    min-height: 100vh;
 }
 
 nav{
@@ -63,7 +66,6 @@ nav p span{
     row-gap: 2rem;
     justify-content: space-evenly;
     margin-inline: 4rem;
-    margin-bottom: 5rem;
 }
 
 .product{
@@ -127,12 +129,73 @@ nav p span{
     object-position: center;
 }
 
-.product-name{
-    
+.over-lay{
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 200, 168, 0.5);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 1;
+    position: absolute;
 }
 
-.product-price{
-    
+.cart-container{
+    width: 30%;
+    height: 100%;
+    background: #e7e7e7;
+    padding: 1rem;
+}
+
+.cart-container button:first-child{
+    color: #fff;
+    background: black;
+    padding: 2px 4px;
+    border-radius: 5px;
+    font-weight: bolder;
+}
+
+.cart-container h2{
+    text-align: center;
+}
+
+.clear-btn{
+    color: white;
+    background: var(--secondary);
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 25.px;
+    font-weight: bold;
+}
+
+.cart-item{
+    display: flex;
+}
+
+.cart-item img{
+    width: 20%;
+}
+
+.cart-item-info{
+    width: 60%;
+}
+
+.cart-item-count{
+    width: 20%;
+}
+
+.cart-item-count p{
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align:right;
+}
+
+.btn-grp{
+    text-align:right;
+}
+
+.btn-grp img{
+    cursor: pointer;
 }
 
 .sec-color{
@@ -153,4 +216,8 @@ font-weight: bolder;
 
 .mb-2{
     margin-bottom: 2rem;
+}
+
+.mb-1{
+    margin-bottom: 1rem;
 }

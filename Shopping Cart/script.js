@@ -1,5 +1,10 @@
 const productContainer = document.querySelector("#productContainer");
 const cartItemCount = document.querySelector("#cartItemCount");
+const cartElement = document.querySelector("#cart");
+
+cartElement.addEventListener("click", (event) => {
+
+})
 
 let cart = {
     products: [],
@@ -35,7 +40,7 @@ function setCartPrice(){
                 totalCost += product.price * product.count;
         });
 
-    cart.totalCost = totalCost;
+    cart.totalCost = Math.round(totalCost * 100) / 100;
 
 }
 
@@ -94,10 +99,75 @@ fetch('https://fakestoreapi.com/products')
 
                     label.addEventListener("click", () => { 
                        addProduct(product);
-                       console.log(cart);
+                       cartItemCount.innerText = cart.productCount;
                     })
 
                     productDiv.appendChild(label);
                 });
 })
 
+const overLay = document.querySelector(".over-lay");
+const cartContainer = document.document.querySelector(".cart-container");
+
+function renderCartProducts(){
+
+    cartContainer.innerHTML = 
+    `            
+    <button class="mb-1">X</button>
+    <h2 class="mb-1">You Cart</h2>
+    `
+    
+
+    renderCartItems();
+
+    let totalCostEl = document.createElement("p");
+    totalCostEl.className = "mb-1 center";
+    totalCostEl.innerText = `Your Total: $ ${cart.totalCost}`;
+
+    cartContainer.appendChild(totalCostEl);
+
+
+}
+
+function renderCartItems(){
+    cart.products.forEach(product => {
+        let cartItem = document.createElement("div");
+        cartItem.className = "cart-item";
+
+        let cartItemImg = document.createElement("img");
+        cartItemImg.setAttribute("src", product.image);
+        cartItem.appendChild(cartItemImg);
+
+        let cartItemInfo = document.createElement("div");
+        cartItemInfo.className = "cart-item-info";
+
+        let itemName = document.createElement("h3");
+        itemName.innerText = product.title;
+
+        let itemPrice = document.createElement("p");
+        itemPrice.innerText = `$${product.price}`;
+
+        cartItemInfo.appendChild(itemName);
+        cartItemInfo.appendChild(itemPrice);
+        cartItem.appendChild(cartItemInfo);
+
+        let itemCount = document.createElement("div");
+        itemCount.className = "cart-item-count";
+
+        let count = document.createElement("p");
+        count.innerText = product.count;
+
+        itemCount.appendChild(count);
+        itemCount.innerHTML = 
+        `
+        <div class="btn-grp">
+            <img src="images/plus.svg">
+            <img src="images/minus.svg">
+        </div>
+        `
+
+        cartItem.appendChild(itemCount);
+        
+        cartContainer.appendChild(cartItem);
+    })
+}
