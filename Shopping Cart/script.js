@@ -166,6 +166,7 @@ function renderCartItems(){
 
         let imgMinus = document.createElement("img");
         imgMinus.setAttribute("src", "images/minus.svg");
+        minusProductListener(imgMinus, product);
 
         btnGrp.appendChild(imgMinus);
         btnGrp.appendChild(imgPlus);
@@ -187,7 +188,21 @@ function minusProductListener(img, product){
         else 
         product.count = currentProduct;
 
+        clearBasket();
+        renderCartProducts();
+
+        updateCartDetails();
     })
+}
+
+function updateCartDetails(){
+    setCartPrice();
+    setProductLenth();
+
+    const cartCost = document.querySelector("#cartCost");
+    cartCost.innerText = cart.totalCost;
+
+    cartItemCount.innerText = cart.productCount;
 }
 
 function addProductListener(img, product){
@@ -196,11 +211,13 @@ function addProductListener(img, product){
 
         product.count = ++currentProduct;
     })
+
 }
 
 function deleteProduct(product){
     cart.products = cart.products
-                        .filter(p => p.title !== product); 
+                        .filter(p => p.title !== product.title);
+                            
 }
 
 clearBtn.addEventListener("click", (event) => {
