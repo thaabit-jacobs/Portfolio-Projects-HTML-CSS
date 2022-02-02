@@ -83,7 +83,7 @@ nav p span{
     cursor: pointer;
     color: #fff;
     transform: translatex(70%);
-    transition: all 750ms;
+    transition: all 500ms;
 }
 
 .label svg{

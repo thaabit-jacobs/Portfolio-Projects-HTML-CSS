@@ -5,6 +5,7 @@ const overLay = document.querySelector(".over-lay");
 const cartContainer = document.querySelector(".cart-container");
 const closeBtn = document.querySelector(".close-btn");
 const cartItemContainer = document.querySelector(".cart-item-container");
+const clearBtn = document.querySelector(".clear-btn");
 
 let cart = {
     products: [],
@@ -19,9 +20,7 @@ cartElement.addEventListener("click", (event) => {
 })
 
 closeBtn.addEventListener("click", (event) => {
-    cartItemContainer.childNodes.forEach(p => {
-        p.remove();
-    })
+    clearBasket();
 
     overLay.className = "over-lay hide";
 })
@@ -177,4 +176,50 @@ function renderCartItems(){
         
         cartItemContainer.appendChild(cartItem);
     })
+}
+
+function minusProductListener(img, product){
+    img.addEventListener("click", (event) => {
+        let currentProduct = product.count;
+
+        if(--currentProduct === 0) 
+            deleteProduct(product);
+        else 
+        product.count = currentProduct;
+
+    })
+}
+
+function addProductListener(img, product){
+    img.addEventListener("click", (event) => {
+        let currentProduct = product.count;
+
+        product.count = ++currentProduct;
+    })
+}
+
+function deleteProduct(product){
+    cart.products = cart.products
+                        .filter(p => p.title !== product); 
+}
+
+clearBtn.addEventListener("click", (event) => {
+    resetCart();
+})
+
+function resetCart(){
+    cart.products = [];
+    cart.productCount = 0;
+    cart.totalCost = 0;
+
+    clearBasket();
+
+    cartItemCount.innerText = cart.productCount;
+
+    const cartCost = document.querySelector("#cartCost");
+    cartCost.innerText = cart.totalCost;
+}
+
+function clearBasket(){
+    cartItemContainer.querySelectorAll(".cart-item").forEach(n => n.remove());
 }
