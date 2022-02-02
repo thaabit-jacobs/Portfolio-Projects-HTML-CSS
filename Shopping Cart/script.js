@@ -4,6 +4,7 @@ const cartElement = document.querySelector("#cart");
 const overLay = document.querySelector(".over-lay");
 const cartContainer = document.querySelector(".cart-container");
 const closeBtn = document.querySelector(".close-btn");
+const cartItemContainer = document.querySelector(".cart-item-container");
 
 let cart = {
     products: [],
@@ -18,8 +19,8 @@ cartElement.addEventListener("click", (event) => {
 })
 
 closeBtn.addEventListener("click", (event) => {
-    cartContainer.childNodes.forEach(p => {
-        console.log(p);
+    cartItemContainer.childNodes.forEach(p => {
+        p.remove();
     })
 
     overLay.className = "over-lay hide";
@@ -122,25 +123,16 @@ fetch('https://fakestoreapi.com/products')
 
 
 function renderCartProducts(){
-    let yourCrt = document.createElement("h2");
-    yourCrt.className = "mb-1";
-    yourCrt.innerText = "Your Cart";
-
-    cartContainer.appendChild(yourCrt);
-
     renderCartItems();
 
-    let totalCostEl = document.createElement("p");
-    totalCostEl.className = "mb-1 center";
-    totalCostEl.innerText = `Your Total: $ ${cart.totalCost}`;
-
-    cartContainer.appendChild(totalCostEl);
+    const cartCost = document.querySelector("#cartCost");
+    cartCost.innerText = cart.totalCost;
 }
 
 function renderCartItems(){
     cart.products.forEach(product => {
         let cartItem = document.createElement("div");
-        cartItem.className = "cart-item";
+        cartItem.className = "cart-item mb-1";
 
         let cartItemImg = document.createElement("img");
         cartItemImg.setAttribute("src", product.image);
@@ -183,6 +175,6 @@ function renderCartItems(){
 
         cartItem.appendChild(itemCount);
         
-        cartContainer.appendChild(cartItem);
+        cartItemContainer.appendChild(cartItem);
     })
 }
