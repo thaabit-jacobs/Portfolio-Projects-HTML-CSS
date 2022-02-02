@@ -163,6 +163,7 @@ function renderCartItems(){
 
         let imgPlus = document.createElement("img");
         imgPlus.setAttribute("src", "images/plus.svg");
+        addProductListener(imgPlus, product);
 
         let imgMinus = document.createElement("img");
         imgMinus.setAttribute("src", "images/minus.svg");
@@ -210,6 +211,11 @@ function addProductListener(img, product){
         let currentProduct = product.count;
 
         product.count = ++currentProduct;
+
+        clearBasket();
+        renderCartProducts();
+        
+        updateCartDetails();
     })
 
 }
