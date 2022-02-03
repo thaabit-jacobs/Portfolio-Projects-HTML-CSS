@@ -7,14 +7,18 @@
 }
 
 html{
-    --primary: #e4dfd8;
-    --secondary:  #ee8e40;
+    --primary: #fff;
+    --secondary:  #f8f6f8;
+    --border-bottom:  #ececec;
 }
 
 body {
     font-family: 'Roboto', sans-serif;
     display: flex;
     height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(160deg, #0093E9, #80D0C7);
+    padding: 4rem;
 }
 
 .col-1{
@@ -34,5 +38,40 @@ body {
 }
 
 #book-window{
+    height: 30rem;
+    width: 35rem;
+}
 
+#book-title{
+    font-size: 1.5rem;
+}
+
+.info-heading{
+    height: 10%;
+    padding: 0.5rem 1rem;
+    background: var(--secondary);
+    border-bottom: var(--border-bottom) solid 3px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    color: #000;
+}
+
+.footer{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: bold;
+    font-size: 0.75rem;
+    border-top: var(--border-bottom) solid 3px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+#book-content{
+    height: 80%;
+    background: var(--primary);
+    padding: 1rem 2rem;
+    overflow-y: scroll;
 }
