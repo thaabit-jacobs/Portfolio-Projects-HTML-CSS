@@ -47,7 +47,6 @@ body {
 }
 
 .info-heading{
-    height: 10%;
     padding: 0.5rem 1rem;
     background: var(--secondary);
     border-bottom: var(--border-bottom) solid 3px;
@@ -74,4 +73,57 @@ body {
     background: var(--primary);
     padding: 1rem 2rem;
     overflow-y: scroll;
+}
+
+.info-container{
+    background: var(--primary);
+    width: 20rem;
+    margin-bottom: 1rem;
+    border-radius: 7px;
+}
+
+.info-container p{
+    font-weight: bold;
+}
+
+.info-container form{
+    margin: 1rem;
+}
+
+.info-container form input{
+    height: 2rem;
+    border: var(--secondary) solid 2px;
+    border-radius: 5px;
+}
+
+.info-container form input[type="text"]:focus{
+    border: var(--border-bottom) solid 2px; 
+    outline: var(--border-bottom);
+}
+
+.info-container form input[type="submit"]{
+    background: #69727b;
+    color: white;
+    font-weight: bold;
+    padding-inline: 0.75rem;
+    cursor: pointer;
+}
+
+.info-container .list{
+    list-style: none;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    font-weight: normal;
+}
+
+.list button{
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: #0093E9;
+    cursor: pointer;
+}
+
+#wordCount{
+    padding: 0.5rem 1rem;
 }
