@@ -14,85 +14,57 @@ allBtns.forEach(btn => {
                 bookContents = bookContents.trim();
                 bookContent.innerText = bookContents;
 
-                renderMostUsedWords(findTopFiveUsedWord(mostUsedWords(bookContents)));
+                let wordCount = wordCounter(bookContents);
+                let sortedWordArray = sortWordArray(convertWordObjToWordArray(wordCount));
+
+                renderWordsToContainer(findTopFiveMostUsedWord(sortedWordArray, 5) ,"mostUsedWords");
+
+                renderWordsToContainer(findTopFiveLeastUsedWord(sortedWordArray, 5) ,"leastUsedWords");
+
+                const wordCountEl = document.querySelector("#wordCount");
+                wordCountEl.innerText = `word count:${Object.keys(wordCount).length}`;
+
+                const bookTitletEl = document.querySelector("#book-title");
+                bookTitletEl.innerText = bookTitle;
             });
     })
 })
 
 //////////////////////////////////////Most used words////////////////////////////////
 
-function mostUsedWords(text){
+function findTopFiveMostUsedWord(sortedWordArray, noOfWords){
+    let lastIndex = sortedWordArray.length - 1;
+
+    return sortedWordArray.slice(lastIndex - noOfWords, lastIndex);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////least words////////////////////////////////
+
+function findTopFiveLeastUsedWord(sortedWordArray, noOfWords){
+    return sortedWordArray.slice(0, noOfWords);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////Utilities////////////////////////////////
+
+function wordCounter(text){
     let wordCount = {};
     
-    text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
+    text.replace(/[""();:-_.,!?\n[]]/g, " ")
         .split(" ")
-        .filter(str => str !== "\n" && str !== "")
-        .forEach(word => {
+        .forEach(word => {        
             if(wordCount[word] !== undefined) 
                 wordCount[word] = ++wordCount[word];
             else
-                wordCount[word] = 1;     
+                wordCount[word] = 1; 
         });
-
-    console.log(wordCount);
 
     return wordCount;    
 }
 
-function findTopFiveUsedWord(wordCount){
-    let topFiveUsedWord = {};
-
-    for(let currentWord in wordCount){
-        if(Object.keys(topFiveUsedWord).length !== 5){
-            topFiveUsedWord[currentWord] = wordCount[currentWord];
-        }else{
-            for(let currentMostUsedWord in topFiveUsedWord){
-                if(topFiveUsedWord[currentMostUsedWord] < wordCount[currentWord] && topFiveUsedWord[currentWord] === undefined){
-                    delete topFiveUsedWord[currentMostUsedWord];
-                    topFiveUsedWord[currentWord] = wordCount[currentWord];
-                }
-            }
-        }
-    }
-
-    return topFiveUsedWord;
-}
-
-function renderMostUsedWords(topFiveMostUsedWords){
-    const mostUsedWordsContainer = document.querySelector("#mostUsedWords");
-
-    removeAllChildrenFromElement(mostUsedWordsContainer, "li");
-
-    let wordArray = sortWordArray(convertWordObjToWordArray(topFiveMostUsedWords));
-
-    wordArray.forEach(word => {
-        let li = document.createElement("li");
-        li.innerHTML = `<p>${wordCountTemplate(word[0], word[1])}</p>`;
-        mostUsedWordsContainer.appendChild(li);
-    });
-}
-
-////////////////////////////////////////////////////////////////////////////////
-
-//////////////////////////////////////Most least words////////////////////////////////
-
-
-/*
-function renderMostUsedWords(topFiveMostUsedWords){
-    const mostUsedWordsContainer = document.querySelector("#mostUsedWords");
-
-    removeAllChildrenFromElement(mostUsedWordsContainer, "li")
-
-    for(let word in topFiveMostUsedWords){
-        let li = document.createElement("li");
-        li.innerHTML = `<p>${wordCountTemplate(word, topFiveMostUsedWords[word])}</p>`;
-        mostUsedWordsContainer.appendChild(li);
-    }
-}
-*/
-////////////////////////////////////////////////////////////////////////////////
-
-//////////////////////////////////////Utilities////////////////////////////////
 function wordCountTemplate(word, count){
     return `${word}: ${count} time(s)`;
 }
@@ -112,7 +84,19 @@ function convertWordObjToWordArray(wordObj){
 }
 
 function sortWordArray(wordArray){
-    return wordArray.sort((a, b) => b[1] - a[1]);
+    return wordArray.sort((a, b) => a[1] - b[1]);
+}
+
+function renderWordsToContainer(wordArray, elementId){
+    const wordsContainer = document.querySelector(`#${elementId}`);
+
+    removeAllChildrenFromElement(wordsContainer, "li");
+
+    wordArray.forEach(word => {
+        let li = document.createElement("li");
+        li.innerHTML = `<p>${wordCountTemplate(word[0], word[1])}</p>`;
+        wordsContainer.appendChild(li);
+    });
 }
 
 ///////////////////////////////////////////////////////////////////////////////
