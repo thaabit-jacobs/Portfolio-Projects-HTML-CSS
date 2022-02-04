@@ -13,17 +13,20 @@ allBtns.forEach(btn => {
             .then(bookContents => {
                 bookContents = bookContents.trim();
                 bookContent.innerText = bookContents;
+
+                renderMostUsedWords(mostUsedWords(bookContents));
             });
     })
 })
 
+//////////////////////////////////////Most used words////////////////////////////////
 
 function mostUsedWords(text){
     let wordCount = {};
     let topFiveUsedWord = {}
 
     text.split(" ")
-        .filter(str => str !== "\n")
+        .filter(str => str !== "\n" && str !== "")
         .forEach(word => {
             if(wordCount[word] !== undefined) 
                 wordCount[word] = ++wordCount[word];
@@ -32,12 +35,14 @@ function mostUsedWords(text){
         });
     
     function findTopFiveUsedWord(){
+        console.log("Word count obj: ", wordCount);
+
         for(let currentWord in wordCount){
-            if(Object.keys(topFiveUsedWord) < 5){
-                topFiveUsedWord[currentWord] = wordCount[currentWord]; 
+            if(Object.keys(topFiveUsedWord).length !== 5){
+                topFiveUsedWord[currentWord] = wordCount[currentWord];
             }else{
                 for(let currentMostUsedWord in topFiveUsedWord){
-                    if(topFiveUsedWord[currentMostUsedWord] < wordCount[currentWord]){
+                    if(topFiveUsedWord[currentMostUsedWord] < wordCount[currentWord] && topFiveUsedWord[currentWord] === undefined){
                         delete topFiveUsedWord[currentMostUsedWord];
                         topFiveUsedWord[currentWord] = wordCount[currentWord];
                     }
@@ -51,6 +56,26 @@ function mostUsedWords(text){
     return topFiveUsedWord;    
 }
 
-console.log(
-    mostUsedWords("This is going to be a long sentence. \nHopefully a person will understand. \nwho is this person")
-)
+function renderMostUsedWords(topFiveMostUsedWords){
+    const mostUsedWordsContainer = document.querySelector("#mostUsedWords");
+
+    removeAllChildrenFromElement(mostUsedWordsContainer, "li")
+
+    for(let word in topFiveMostUsedWords){
+        let li = document.createElement("li");
+        li.innerHTML = `<p>${wordCountTemplate(word, topFiveMostUsedWords[word])}</p>`;
+        mostUsedWordsContainer.appendChild(li);
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////Utilities////////////////////////////////
+function wordCountTemplate(word, count){
+    return `${word}: ${count} time(s)`;
+}
+
+function removeAllChildrenFromElement(parentElement, childElementSelectorToBeRemoved){
+    parentElement.querySelectorAll(childElementSelectorToBeRemoved).forEach(child => child.remove());
+}
+///////////////////////////////////////////////////////////////////////////////
