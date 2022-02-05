@@ -129,3 +129,12 @@ body {
     font-size: 0.75rem;
     padding: 0.5rem 1rem;
 }
+
+#searchWordCount{
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+}
+
+.yellow{
+    background: black;
+}

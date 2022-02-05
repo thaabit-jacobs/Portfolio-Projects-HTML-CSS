@@ -22,7 +22,7 @@ allBtns.forEach(btn => {
                 renderWordsToContainer(findTopFiveLeastUsedWord(sortedWordArray, 5) ,"leastUsedWords");
 
                 const wordCountEl = document.querySelector("#wordCount");
-                wordCountEl.innerText = `word count:${Object.keys(wordCount).length}`;
+                wordCountEl.innerText = `word count:${calculateNumberOfWords(wordCount)}`;
 
                 const bookTitletEl = document.querySelector("#book-title");
                 bookTitletEl.innerText = bookTitle;
@@ -52,14 +52,18 @@ function findTopFiveLeastUsedWord(sortedWordArray, noOfWords){
 
 function wordCounter(text){
     let wordCount = {};
-    
-    text.replace(/[""();:-_.,!?\n[]]/g, " ")
-        .split(" ")
-        .forEach(word => {        
-            if(wordCount[word] !== undefined) 
-                wordCount[word] = ++wordCount[word];
-            else
-                wordCount[word] = 1; 
+
+    console.log()
+
+    text.replace(/[\n\r]/g, " ").split(" ")
+        .forEach(word => {
+            if(isNaN(word)){
+                if(wordCount[word] !== undefined) 
+                    wordCount[word] = ++wordCount[word];
+                else{
+                    wordCount[word] = 1;
+                }
+            }   
         });
 
     return wordCount;    
@@ -99,4 +103,35 @@ function renderWordsToContainer(wordArray, elementId){
     });
 }
 
+function calculateNumberOfWords(wordObj){
+    return Object.values(wordObj).reduce((a ,b) => a + b);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////search word for,/////////////////////////////////
+const bookSearchForm = document.querySelector("#bookSearchForm");
+bookSearchForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    let wordCount = 0;
+
+    let searchWord = bookSearchForm["word"].value;
+    let bookText = bookContent.innerText;
+
+    if(bookText !== ""){
+        bookText
+                .replace(/[\n\r]/g, " ")
+                .split(" ")
+                .forEach(word => {
+                    if(searchWord === word){
+                        wordCount++;
+                    };
+                }) 
+
+        const searchWordCount = document.querySelector("#searchWordCount");
+        searchWordCount.innerText = wordCountTemplate(searchWord, wordCount);
+
+        bookSearchForm.reset();
+    }
+})
