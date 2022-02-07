@@ -12,7 +12,7 @@ allBtns.forEach(btn => {
             .then(data => data.text())
             .then(bookContents => {
                 bookContents = bookContents.trim();
-                bookContent.innerText = bookContents;
+                bookContent.innerHTML = bookContents.replaceAll("\r", "</br>");
 
                 let wordCount = wordCounter(bookContents);
                 let sortedWordArray = sortWordArray(convertWordObjToWordArray(wordCount));
