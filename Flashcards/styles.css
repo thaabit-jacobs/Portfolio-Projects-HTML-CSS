@@ -38,8 +38,8 @@ main{
     cursor: pointer;
 }
 
-#flashCardsForm{
-    width: 50%;
+.flashCardsForm{
+    width: 60%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -67,13 +67,13 @@ main{
     cursor: pointer;
 }
 
-#flashCardsForm > label{
+form > label{
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
 }
 
-#flashCardsForm > textarea{
+form > textarea{
     width: 100%;
     resize: vertical;
     font-family: 'Roboto', sans-serif;
@@ -160,4 +160,15 @@ input[type="submit"] {
     border: solid orange 1px;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.error-wrapper{
+    display: none;
+    width: 100%;
+    padding: 0.25rem 1rem;
+    border: solid rgb(240, 134, 134) 1px;
+    border-radius: 5px;
+    color: red;
+    font-weight: bold;
+    margin-bottom: 2rem;
 }

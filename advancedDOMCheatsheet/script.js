@@ -70,7 +70,7 @@ button.addEventListener("click", ()=>{
 }, {capture: true})
 */
 
-//precent event bubbling
+//prevent event bubbling
 btnContainer.addEventListener("click", (event)=>{
     alert("from btnContainer")
 })
