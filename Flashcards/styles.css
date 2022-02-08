@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html{
+    --main-bg: #fdfbfb;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    padding: 2rem 10rem;
+    background: var(--main-bg);
+}
+
+main{
+    width: 100%;
+}
+
+.form-wrapper{
+    margin-bottom: 3rem;
+}
+
+.form-wrapper > h1{
+    margin-bottom: 0.75rem;
+}
+
+.form-wrapper > button{
+    background: none;
+    color: orange;
+    border: solid orange 1px;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+}
+
+#flashCardsForm{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem 2rem;
+    border: solid orange 1px;
+    border-radius: 5px;
+}
+
+
+.button-wrapper{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.button-wrapper button{
+    background: orange;
+    font-weight: bolder;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 0.25rem 0.5rem;
+    border: solid orange 1px;
+    border-radius: 5px;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+}
+
+#flashCardsForm > label{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+#flashCardsForm > textarea{
+    width: 100%;
+    resize: vertical;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: solid orange 1px;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background: rgb(79, 167, 79);
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 0.25rem 0.5rem;
+    border: solid rgb(79, 167, 79) 1px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.flash-card-wrapper{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    align-items: center;
+    column-gap: 2rem;
+    row-gap: 2rem;
+}
+
+.flash-card{
+    background: #fff;
+    border: solid rgb(238, 238, 238) 2px;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.flash-card > h2{
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.flash-card > button{
+    background: none;
+    font-size: 1rem;
+    color: rgb(30, 134, 219);
+    border: none;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+}
+
+.flash-card > p{
+    font-size: 1.25rem;
+    font: bold;
+    margin-bottom: 0.75rem;
+}
+
+.btn-grp {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-grp > button{
+    background: none;
+    border: none;
+}
+
+#edit{
+    background: rgb(79, 167, 79);
+    color: #fff;
+    font-size: 1rem;
+    padding: 0.1rem 0.25rem;
+    border: solid rgb(79, 167, 79) 1px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#delete{
+    background: orange;
+    color: #fff;
+    font-size: 1rem;
+    padding: 0.1rem 0.25rem;
+    border: solid orange 1px;
+    border-radius: 5px;
+    cursor: pointer;
+}
