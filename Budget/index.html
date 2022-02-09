@@ -15,17 +15,21 @@
         
             <form id="budget">
                 <label for="budgetAmount">Please Enter Your Budget</label>
-                <input id="budgetAmount" name="budgetAmount" type="number" min="0">
+                <input id="budgetAmount" name="budgetAmount" type="number" min="0" step="5">
     
                 <input type="submit" value="Calculate">
             </form>
     
             <form id="expense">
+                <div class="errors">
+                    <p class="error">Lorem ipsum dolor sit amet.</p>
+                </div>
+
                 <label for="expenseName">Enter Your Expense</label>
                 <input id="expenseName" name="expenseName" type="text">
     
                 <label for="expenseAmount">Enter Your Expense Amount</label>
-                <input id="expenseAmount" name="expenseAmount" type="number" min="0">
+                <input id="expenseAmount" name="expenseAmount" type="number" min="0" step="5">
     
                 <input type="submit" value="Add Expense">
             </form>
@@ -36,19 +40,19 @@
                 <div class="total-wrapper">
                     <h2>Budget</h2>
                     <img src="img/bill.svg">
-                    <p id="budgetValue" class="green">$00.00</p>
+                    <p id="budgetValue" class="green">$0</p>
                 </div>
     
                 <div class="total-wrapper">
                     <h2>Expenses</h2>
                     <img src="img/card.svg">
-                    <p id="expensesValue" class="red">$00.00</p>
+                    <p id="expenseValue" class="red">$0</p>
                 </div>
     
                 <div class="total-wrapper">
                     <h2>Balance</h2>
                     <img src="img/dollar.svg">
-                    <p id="balanceValue">$00.00</p>
+                    <p id="balanceValuee">$0</p>
                 </div>
             </div>
     
@@ -57,16 +61,6 @@
                   <th>Expense Title</th>
                   <th>Expense Value</th>
                   <th></th>
-                </tr>
-                <tr>
-                    <td>Food</td>
-                    <td>$33</td>
-                    <td>
-                        <div class="icon-group">
-                            <img id="delete" src="img/trash.svg">
-                            <img id="edit" src="img/edit.svg">
-                        </div>
-                    </td>
                 </tr>
               </table>
         </div>

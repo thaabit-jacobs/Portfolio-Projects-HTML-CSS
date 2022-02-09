@@ -63,8 +63,9 @@ form input[type="text"], input[type="number"]{
     width: 100%;
     height: 2rem;
     border-radius: 5px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     background: #fff;
+    padding-inline-start: 0.2rem;
 }
 
 #budget{
@@ -153,6 +154,20 @@ td{
     cursor: pointer;
 }
 
+.errors{
+    width: 100%;
+}
+
+.error{
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-size: 0.75rem;
+    border: red solid 1px;
+    border-radius: 5px;
+    padding: 0.25rem 0.5rem;
+}
+
 @media screen and (max-width: 740px) {
     body {
         padding: 1.75rem 1.75rem;
@@ -176,7 +191,6 @@ td{
 @media screen and (max-width: 500px) { 
     .totals{
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         row-gap: 2rem;
     }
@@ -193,5 +207,13 @@ td{
     .total-wrapper p{
         font-size: 1.75rem;
 
+    }
+
+    th{
+        font-size: 1rem;
+    }
+    
+    .icon-group img{
+        width: 1.25rem;
     }
 }
