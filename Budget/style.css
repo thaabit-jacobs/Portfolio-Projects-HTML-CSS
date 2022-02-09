@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+}
+
+body {
+    width: 100%;
+    padding: 1.75rem 5rem;
+    font-family: 'Roboto', sans-serif;
+    background: #fcf9f9;
+}
+
+main{
+    display: flex;
+    column-gap: 2rem;
+}
+
+h1{
+    margin-bottom: 1rem;
+}
+
+.forms-container{
+    width: 50%;
+}
+
+.budget-container{
+    width: 50%;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    row-gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    padding: 1rem 3rem;
+    border: 1px solid;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+form input{
+    background: none;
+    border: none;
+}
+
+form input[type="submit"]{
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+form input[type="text"], input[type="number"]{
+    width: 100%;
+    height: 2rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    background: #fff;
+}
+
+#budget{
+    border-color: green;
+}
+
+#budget input{
+    border: 1px solid green;
+    outline: none;
+}
+
+
+#budget input[type="submit"]{
+    color: green;
+}
+
+#expense{
+    border-color: red;
+}
+
+#expense input{
+    border: 1px solid red;
+    outline: none;
+}
+
+#expense input[type="submit"]{
+    color: red;
+}
+
+.totals{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    column-gap: 2rem;
+}
+
+.total-wrapper{
+    width: 33%;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.total-wrapper h2{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.total-wrapper img{
+    width: 40%;
+    margin-bottom: 1rem;
+}
+
+.total-wrapper p{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+table{
+    width: 100%;
+    margin-top: 2rem;
+}
+
+th{
+    font-size: 1.2rem;
+}
+
+td{
+    text-align: center;
+}
+
+.icon-group{
+    display: flex;
+}
+
+.icon-group img{
+    text-align:right;
+    width: 1.75rem;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 740px) {
+    body {
+        padding: 1.75rem 1.75rem;
+    }
+
+    main{
+        flex-direction: column;
+        row-gap: 2rem;
+    }
+
+    .forms-container{
+        width: 100%;
+    }
+    
+    .budget-container{
+        width: 100%;
+    }
+    
+}
+
+@media screen and (max-width: 500px) { 
+    .totals{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 2rem;
+    }
+
+    .total-wrapper h2{
+        font-size: 2rem;
+    }
+    
+    .total-wrapper img{
+        width: 90%;
+        margin-bottom: 1rem;
+    }
+    
+    .total-wrapper p{
+        font-size: 1.75rem;
+
+    }
+}

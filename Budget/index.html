@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Budget App</title>
+</head>
+<body>
+    <h1>Budget App</h1>
+
+    <main>
+        <div class="forms-container">
+        
+            <form id="budget">
+                <label for="budgetAmount">Please Enter Your Budget</label>
+                <input id="budgetAmount" name="budgetAmount" type="number" min="0">
+    
+                <input type="submit" value="Calculate">
+            </form>
+    
+            <form id="expense">
+                <label for="expenseName">Enter Your Expense</label>
+                <input id="expenseName" name="expenseName" type="text">
+    
+                <label for="expenseAmount">Enter Your Expense Amount</label>
+                <input id="expenseAmount" name="expenseAmount" type="number" min="0">
+    
+                <input type="submit" value="Add Expense">
+            </form>
+        </div>
+    
+        <div class="budget-container">
+            <div class="totals">
+                <div class="total-wrapper">
+                    <h2>Budget</h2>
+                    <img src="img/bill.svg">
+                    <p id="budgetValue" class="green">$00.00</p>
+                </div>
+    
+                <div class="total-wrapper">
+                    <h2>Expenses</h2>
+                    <img src="img/card.svg">
+                    <p id="expensesValue" class="red">$00.00</p>
+                </div>
+    
+                <div class="total-wrapper">
+                    <h2>Balance</h2>
+                    <img src="img/dollar.svg">
+                    <p id="balanceValue">$00.00</p>
+                </div>
+            </div>
+    
+            <table>
+                <tr>
+                  <th>Expense Title</th>
+                  <th>Expense Value</th>
+                  <th></th>
+                </tr>
+                <tr>
+                    <td>Food</td>
+                    <td>$33</td>
+                    <td>
+                        <div class="icon-group">
+                            <img id="delete" src="img/trash.svg">
+                            <img id="edit" src="img/edit.svg">
+                        </div>
+                    </td>
+                </tr>
+              </table>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
