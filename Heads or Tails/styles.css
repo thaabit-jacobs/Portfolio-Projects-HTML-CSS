@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Unica One', cursive;
+    padding: 2rem;
+}
+
+h1{
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.players-score{
+    display: flex;
+    column-gap: 4rem;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+img{
+    width: 10%;
+    margin-bottom: 2rem;
+}
+
+h2{
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+button{
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+    border: rgb(112, 176, 250) solid 2px;
+    border-radius: 5px;
+    padding: 0.25rem 2rem;
+    cursor: pointer;
+}
