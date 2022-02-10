@@ -48,3 +48,29 @@ button{
     padding: 0.25rem 2rem;
     cursor: pointer;
 }
+
+@media screen  and (max-width: 520px) {
+    h1{
+        font-size: 1.75rem;
+    }
+
+    .players-score{
+        display: flex;
+        column-gap: 2rem;
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+    }
+
+    img{
+        width: 30%;
+    }
+    
+    h2{
+        font-size: 1.5rem;
+    }
+
+    button{
+        font-size: 1.2rem;
+        padding: 0.25rem 1.5rem;
+    }
+}
