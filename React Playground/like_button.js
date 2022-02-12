@@ -5,12 +5,14 @@ const e = React.createElement;
 class LikeButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { liked: false };
+    this.state = { liked: false,
+                    count: 0 };
   }
 
 render() {
     if (this.state.liked) {
-      return 'You liked this.';
+      this.state.count = ++this.state.count; 
+      return this.state.count;
     }
 
     return e(
